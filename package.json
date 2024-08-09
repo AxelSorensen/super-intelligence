@@ -10,7 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@vueuse/core": "^10.11.1",
+    "matter-js": "^0.20.0",
     "nuxt": "^3.11.2",
+    "pathseg": "^1.2.1",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   },
