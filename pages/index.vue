@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!play" class="w-dvw h-dvh grid grid-rows-[auto,1fr,1fr] relative">
+    <div v-if="!play" class="w-dvw z-[20] h-dvh grid grid-rows-[auto,1fr,1fr] relative">
         <div>
             <div @click="play = !play; currentIndex = startIndex;"
                 class="bg-blue-500 top-0 flex items-center justify-center sticky p-2 text-center hover:bg-blue-400 cursor-pointer">
@@ -9,7 +9,7 @@
                 cookies
             </div>
             <div class="bg-blue-200 p-2 cursor-pointer flex justify-center items-center"
-                @click="download(nodes, 'nodes', 'application/json')">Export nodes
+                @click="download(nodes, 'nodes', 'application/json'); saveFile">Export nodes
             </div>
             <div class="bg-blue-200 p-2 cursor-pointer flex justify-center items-center" @click="importJSON">Import
                 nodes
@@ -34,7 +34,8 @@
                         <input v-model="choice.text" type="text"> <span v-if="choice.link == null"
                             class="cursor-pointer" @click.stop="startLink(key, index)">Link</span> <span v-else>-> {{
                                 choice.link
-                            }}</span><span @click="node.choices.splice(index,1)" class="text-red-500 cursor-pointer">X</span>
+                            }}</span><span @click="node.choices.splice(index, 1)"
+                            class="text-red-500 cursor-pointer">X</span>
                     </div>
 
                     <div class="cursor-pointer" @click="addChoice(key)">+ Add choice</div>

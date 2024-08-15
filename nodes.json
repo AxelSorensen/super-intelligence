@@ -105,7 +105,7 @@
       },
       {
         "text": "Sounds like hype to me",
-        "link": ""
+        "link": 10
       }
     ],
     "callback": null,
@@ -115,7 +115,7 @@
     "text": "Superintelligence is hard to fathom, but the potential consequences should not be ignored.",
     "choices": [],
     "callback": {
-      "delay": "1000",
+      "delay": "1500",
       "link": 11
     },
     "tag": null
@@ -142,7 +142,7 @@
     "text": "Imagine you are working in a paperclip factory",
     "choices": [],
     "callback": {
-      "delay": "500",
+      "delay": "1000",
       "link": 14
     },
     "tag": null
@@ -173,7 +173,7 @@
     "choices": [
       {
         "text": "Yeah, I have better things to do",
-        "link": 18
+        "link": 21
       },
       {
         "text": "No, let me make some more",
@@ -193,7 +193,7 @@
     "text": "Happy?",
     "choices": [],
     "callback": {
-      "delay": "500",
+      "delay": "1000",
       "link": 20
     },
     "tag": null
@@ -202,7 +202,7 @@
     "text": "Good",
     "choices": [],
     "callback": {
-      "delay": "500",
+      "delay": "1000",
       "link": 21
     },
     "tag": null
@@ -220,7 +220,7 @@
     "text": "Say hi to Clippy3000. The paperclip maximizer",
     "choices": [],
     "callback": {
-      "delay": "1000",
+      "delay": "1500",
       "link": 23
     },
     "tag": null
@@ -313,7 +313,7 @@
     "text": "I'm... I'm back. That was way too close",
     "choices": [],
     "callback": {
-      "delay": "1000",
+      "delay": "2000",
       "link": 36
     }
   },
@@ -321,7 +321,7 @@
     "text": "Machines are very literal beings. If you only specify one goal they will do whatever it takes to complete it.",
     "choices": [],
     "callback": {
-      "delay": "1000",
+      "delay": "2000",
       "link": 37
     }
   },
@@ -329,7 +329,7 @@
     "text": "A superintelligent AI might find increasingly better ways to produce paperclips.",
     "choices": [],
     "callback": {
-      "delay": "1000",
+      "delay": "2000",
       "link": 38
     }
   },
@@ -337,7 +337,7 @@
     "text": "Duplicating itself to be more efficient and making sure that nothing will prevent it from fullfilling its original task.",
     "choices": [],
     "callback": {
-      "delay": "1000",
+      "delay": "2000",
       "link": 39
     }
   },
@@ -345,7 +345,7 @@
     "text": "It might even determine that a world without humans would inevitably contain an ever-increasing number of paperclips.",
     "choices": [],
     "callback": {
-      "delay": "1000",
+      "delay": "2500",
       "link": 40
     }
   },
@@ -375,7 +375,7 @@
     "text": "“The AI does not hate you, nor does it love you, but you are made out of atoms which it can use for something else.”",
     "choices": [],
     "callback": {
-      "delay": "1000",
+      "delay": "2000",
       "link": 43
     },
     "tag": null
