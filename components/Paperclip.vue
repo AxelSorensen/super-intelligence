@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-screen h-screen overflow-hidden">
+  <div class="relative w-dvw h-dvh overflow-hidden">
     <canvas id="canvas" class="absolute top-0"></canvas>
   </div>
 
@@ -102,7 +102,7 @@ function addClip() {
   )
 
 
-  Body.applyForce(new_clip, { x: new_clip.position.x, y: new_clip.position.y }, { x: Math.random() * 0.005 - 0.0025, y: Math.random() * - 0.001 - 0.015 })
+  Body.applyForce(new_clip, { x: new_clip.position.x, y: new_clip.position.y }, { x: Math.random() * 0.01 - 0.005, y: Math.random() * - 0.001 - 0.015 })
   Body.setAngularVelocity(new_clip, Math.random() * 0.2 - 0.1);
 }
 

@@ -1,11 +1,11 @@
 <template>
-    <div v-if="!play" class="w-screen h-screen grid grid-rows-[auto,1fr,1fr] relative">
+    <div v-if="!play" class="w-dvw h-dvh grid grid-rows-[auto,1fr,1fr] relative">
         <div>
             <div @click="play = !play; currentIndex = startIndex;"
                 class="bg-blue-500 top-0 flex items-center justify-center sticky p-2 text-center hover:bg-blue-400 cursor-pointer">
                 {{ play ? 'Build' : 'Play' }}
             </div>
-            <div class="bg-blue-300 p-2 cursor-pointer flex justify-center items-center" @click="nodes = {}">clear
+            <div class="bg-blue-300 p-2 cursor-pointer flex justify-center items-center" @click="nodes = []">clear
                 cookies
             </div>
             <div class="bg-blue-200 p-2 cursor-pointer flex justify-center items-center"
@@ -16,48 +16,67 @@
             </div>
         </div>
 
-        <div class="p-8 justify-center items-center flex-col gap-4 flex h-full">
-            <div :class="{ 'hover:border-2 border-blue-500': isLinking && key != linkFrom.node }" @click="endLink(key)"
-                class="bg-gray-200 flex-col w-fit p-2 gap-2 flex" v-for="(node, key) in nodes">
-                <div class="flex justify-between">
-                    <p>Id: {{ key }}</p>
-                    <div class="cursor-pointer" @click="play = true; currentIndex = key">Play ></div>
-                    <div @click="delete nodes[key]" class="text-red-500 cursor-pointer">X</div>
+        <div class="p-8 justify-center items-center flex-col flex h-full">
+
+            <div class="flex flex-col" v-for="(node, key) in nodes">
+                <div :class="[isLinking && key != linkFrom.node ? 'hover:border-2 border-blue-500' : null, isAdded(key) ? 'bg-blue-100' : isDeleted(key) ? 'bg-red-100' : 'bg-gray-200']"
+                    @click="endLink(key)" class=" flex-col w-fit p-2 gap-2 flex">
+                    <div class="flex justify-between">
+                        <p>Id: {{ key }}</p>
+                        <div class="cursor-pointer" @click="play = true; currentIndex = key; restartType()">Play ></div>
+                        <div @click="deleteNode(key)" class="text-red-500 cursor-pointer">X</div>
+
+                    </div>
+                    Text: <textarea v-model="node.text" type="text"></textarea>
+                    <p>Choices:</p>
+                    <div class="flex gap-2 justify-between" v-for="(choice, index) in node.choices">
+                        <span>Choice {{ index }}</span>
+                        <input v-model="choice.text" type="text"> <span v-if="choice.link == null"
+                            class="cursor-pointer" @click.stop="startLink(key, index)">Link</span> <span v-else>-> {{
+                                choice.link
+                            }}</span><span @click="node.choices.splice(index,1)" class="text-red-500 cursor-pointer">X</span>
+                    </div>
+
+                    <div class="cursor-pointer" @click="addChoice(key)">+ Add choice</div>
+                    <div v-if="!node.callback" class="cursor-pointer" @click="addCallback(key)">+ Add callback</div>
+                    <div class="flex gap-2 justify-between" v-else>
+                        Delay
+                        <input v-model="node.callback.delay" type="text"> <span v-if="node.callback.link == null"
+                            class="cursor-pointer" @click.stop="startLink(key, index)">Link</span> <span v-else>-> {{
+                                node.callback.link }}</span><span @click="node.callback = null"
+                            class="text-red-500 cursor-pointer">X</span>
+                    </div>
+                    <div v-if="node.tag == null" class="cursor-pointer" @click="addTag(node)">+ Add tag</div>
+                    <div class="flex gap-2 justify-between" v-else>
+                        Tag
+                        <input v-model="node.tag" type="text"><span @click="node.tag = null"
+                            class="text-red-500 cursor-pointer">X</span>
+                    </div>
 
                 </div>
-                Text: <textarea v-model="node.text" type="text"></textarea>
-                <p>Choices:</p>
-                <div class="cursor-pointer" @click="addChoice(key)">+ Add choice</div>
-
-                <div class="flex gap-2 justify-between" v-for="(choice, index) in node.choices">
-                    <span>Choice {{ index }}</span>
-                    <input v-model="choice.text" type="text"> <span v-if="!choice.link" class="cursor-pointer"
-                        @click.stop="startLink(key, index)">Link</span> <span v-else>-> {{ choice.link
-                        }}</span><span @click="node.choices.pop(index)" class="text-red-500 cursor-pointer">X</span>
-                </div>
-                <div v-if="!node.callback" class="cursor-pointer" @click="addCallback(key)">+ Add callback</div>
-                <div class="flex gap-2 justify-between" v-else>
-                    Delay
-                    <input v-model="node.callback.delay" type="text"> <span v-if="!node.callback.link"
-                        class="cursor-pointer" @click.stop="startLink(key, index)">Link</span> <span v-else>-> {{
-                            node.callback.link }}</span><span @click="node.callback = null"
-                        class="text-red-500 cursor-pointer">X</span>
+                <div class="flex justify-center text-gray-400 text-xl cursor-pointer" @click="addNode(key)">
+                    +
                 </div>
             </div>
-            <div class="cursor-pointer" @click="addNode">+ Add node</div>
+            <div v-if="!nodes.length" class="flex justify-center text-gray-400 text-xl cursor-pointer"
+                @click="addNode(-1)">
+                +
+            </div>
         </div>
+
     </div>
 
     <div v-else>
-        <div
-            class="w-screen h-screen grid grid-rows-[1fr,100px] relative grid-cols-1 bg-neutral-900 flex-col p-4  gap-4 ">
+        <div class="w-dvw h-dvh grid grid-rows-[1fr,100px] relative grid-cols-1 bg-neutral-900 flex-col p-4  gap-4 ">
 
 
-            <div class="text-[#4AF626] flex items-center justify-center p-8">
+            <div :class="[hasTag('bad_guy') ? 'text-red-500 z-10 absolute bottom-40' : 'text-[#4AF626]']"
+                class="flex items-center justify-center p-8">
                 <div class="flex gap-2 w-[40ch]">
                     <span>></span>
                     <div class="font-mono">{{ typed_text }}<span
-                            class="animate-[blink-caret_1s_infinite] border-neutral-900 border h-5 w-0 ml-[2px]">
+                            :class="[hasTag('bad_guy') ? 'border-red-500 z-10' : 'border-[#4AF626]']"
+                            class="animate-[blink-caret_1s_infinite] border h-5 w-0 ml-[2px]">
                         </span>
                     </div>
                 </div>
@@ -71,50 +90,53 @@
                     @click="currentIndex = choice.link" v-for="(choice, index) in nodes?.[currentIndex]?.choices">
                     {{ choice.text }}
                 </div>
-                <!-- <div class="cursor-pointer right-2 bottom-2 text-white"
-                    @click="currentIndex = startIndex; restartType()">
-                    Restart
-                </div> -->
+                <div class="absolute left-4 z-10 top-4 gap-4 flex">
+                    <div class="cursor-pointer  text-white" @click="play = !play;">
+                        < Back </div>
+                            <div class="cursor-pointer  text-white" @click="currentIndex = 0; restartType()">
+                                Restart
+                            </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="absolute w-dvw h-dvh flex justify-center">
+                    <Paperclip ref="paperclip" class="z-[8] top-0  absolute" />
+
+                    <button v-if="nodes[currentIndex]?.tag == 'clip_button' && !isTyping" @click="addClip"
+                        class=" text-[#4AF626]  w-full absolute bottom-20 cursor-pointer p-2 z-10">Make
+                        paperclips</button>
+                    <button @click="stopClips" v-if="hasTag('stop_button') && !isTyping"
+                        :class="{ 'bottom-20': hasTag('stop_bottom'), 'top-20': hasTag('stop_top'), 'top-[100px] left-6': hasTag('stop_left'), 'bottom-[100px] right-6': hasTag('stop_works') }"
+                        class=" text-white hover:bg-red-600 bg-red-700 w-auto absolute cursor-pointer p-4 z-10">EMERGENCY
+                        STOP</button>
+                </div>
+
+
 
 
             </div>
-
-            <div class="absolute w-screen h-screen ">
-                <Paperclip ref="paperclip" class="z-[8] top-0  absolute" />
-
-                <button v-if="(11 < currentIndex && currentIndex < 14 || currentIndex == 16) && !isTyping"
-                    @click="addClip" class=" text-[#4AF626]  w-full absolute bottom-20 cursor-pointer p-2 z-10">Make
-                    paperclips</button>
-                <button @click="stopClips" v-if="currentIndex == 30"
-                    class=" text-red-500 w-full absolute bottom-20 cursor-pointer p-2 z-10">EMERGENCY
-                    STOP</button>
-            </div>
-            <div v-if="currentIndex == 31"
-                class="absolute w-screen h-screen flex justify-center items-center z-10 bg-black">
-                <div class="text-red-500">I'm afraid I can't do that</div>
-            </div>
-
 
 
         </div>
 
 
-    </div>
 
+        <div>
 
-    <div>
-
-    </div>
+        </div>
 
 
 </template>
 
 <script setup>
 import node_file from '../nodes.json'
+const nodes = ref(node_file)
 import { ref } from 'vue'
 const paperclip = ref(null)
 const play = ref(false)
-const nodes = ref(node_file)
 //const nodes = ref(useCookie('nodes', { default: () => ref({}) }))
 const currentIndex = ref(null)
 const paperclip_count = ref(0)
@@ -124,9 +146,20 @@ function addClip() {
     paperclip_count.value++
 }
 
+function hasTag(tag_name) {
+    if (nodes.value[currentIndex.value].tag) {
+        return nodes.value[currentIndex.value].tag.split(',').includes(tag_name)
+    } else {
+        return false
+    }
+
+}
 
 function stopClips() {
-    clearInterval(clip_interval.value)
+    if (hasTag('stop_works')) {
+        clearInterval(clip_interval.value)
+    }
+
     currentIndex.value++
 }
 
@@ -135,16 +168,16 @@ function progressiveInterval(initialTime, decreaseFactor, callbackFunction, stop
     let ratio = 1
     function intervalFunction() {
         // Check the stop condition
-        // if (stopCondition()) {
-        //     console.log('Interval stopped');
-        //     return; // Exit the function and stop further execution
-        // }
+        if (stopCondition()) {
+            console.log('Interval stopped');
+            return; // Exit the function and stop further execution
+        }
         // Execute the passed callback function
         callbackFunction();
 
         // Decrease the interval time
         currentInterval = currentInterval - decreaseFactor / ratio;
-        ratio += 0.01
+        ratio += 0.025
         // Set a new interval with the smaller time
         clip_interval.value = setTimeout(intervalFunction, currentInterval);
     }
@@ -153,12 +186,75 @@ function progressiveInterval(initialTime, decreaseFactor, callbackFunction, stop
     clip_interval.value = setTimeout(intervalFunction, currentInterval);
 }
 
-function addNode() {
-    nodes.value[Object.keys(nodes.value).length] = {
+const added_key = ref(null)
+const deleted_key = ref(null)
+
+function addNode(key) {
+    const new_node = {
         text: '',
         choices: [],
         callback: null
     }
+    nodes.value.splice(key + 1, 0, new_node)
+    added_key.value = key + 1
+    setTimeout(() => {
+        added_key.value = null
+    }, 500)
+
+    nodes.value.forEach(node => {
+        node.choices.forEach(choice => {
+            if (choice.link > key) {
+                choice.link++
+            }
+
+        })
+        if (node.callback && node.callback.link > key) {
+
+            node.callback.link++
+
+        }
+
+    })
+}
+
+
+
+function deleteNode(key) {
+
+    deleted_key.value = key
+    setTimeout(() => {
+        nodes.value.splice(key, 1)
+        deleted_key.value = null
+
+    }, 200)
+    nodes.value.forEach(node => {
+        node.choices.forEach(choice => {
+            if (choice.link > key) {
+                choice.link--
+            } else if (choice.link == key) {
+
+                choice.link = null
+            }
+
+        })
+        if (node.callback) {
+            if (node.callback.link > key) {
+                node.callback.link--
+            } else if (node.callback.link == key) {
+
+                node.callback.link = null
+            }
+        }
+
+    })
+}
+
+function isAdded(key) {
+    return added_key.value == key
+}
+
+function isDeleted(key) {
+    return deleted_key.value == key
 }
 
 async function download(content, fileName, contentType) {
@@ -204,7 +300,7 @@ function restartType() {
 }
 
 function typingSpeed() {
-    return 60
+    return 80
 }
 
 function typeText() {
@@ -228,13 +324,13 @@ function runCallback(index) {
     }
 }
 // Function calls callback on first node
-runCallback(currentIndex.value)
+
 
 // Type text when entering new node
 watch(currentIndex, async (newIndex, oldIndex) => {
     restartType()
     typeText()
-    if (currentIndex.value == 24) {
+    if (hasTag('bot_clips')) {
         paperclip_count.value = 0
         botClips()
     }
@@ -246,11 +342,13 @@ function botClips() {
     progressiveInterval(500, 10, () => {
         addClip()
 
-    })
+    }, () => paperclip_count.value > 50000)
 }
 
+
+
 watch(paperclip_count, async (newCount, oldIndex) => {
-    if (currentIndex.value < 18) {
+    if (hasTag('clip_button')) {
         if (newCount == 1) {
             currentIndex.value++
             restartType()
@@ -302,7 +400,7 @@ watch(paperclip_count, async (newCount, oldIndex) => {
 })
 
 async function saveFile() {
-    const response = await fetch('/api/save-file', {
+    await fetch('/api/save-file', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -311,25 +409,35 @@ async function saveFile() {
     });
 }
 
+function hasCallback() {
+    return nodes.value[currentIndex.value].callback
+}
+
 // Run callback after text has been typed
 watch(isTyping, (newValue) => {
     if (!newValue) {
-        runCallback(currentIndex.value)
+        if (hasCallback())
+            runCallback(currentIndex.value)
     }
 });
 
 function addCallback(key) {
+    console.log(key)
     nodes.value[key].callback = {
         delay: null,
-        link: '',
+        link: null,
     }
 }
 
 function addChoice(key) {
     nodes.value[key].choices.push({
         text: '',
-        link: ''
+        link: null,
     })
+}
+
+function addTag(node) {
+    node.tag = ''
 }
 
 function startLink(node, choice) {
@@ -343,7 +451,7 @@ function endLink(node) {
 
     if (isLinking.value) {
         if (linkFrom.value.choice != null) {
-            nodes.value[linkFrom.value.node].choices[parseInt(linkFrom.value.choice)].link = node
+            nodes.value[linkFrom.value.node].choices[linkFrom.value.choice].link = node
 
         } else {
             nodes.value[linkFrom.value.node].callback.link = node

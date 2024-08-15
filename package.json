@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@babel/plugin-transform-optional-chaining": "^7.24.8",
     "@vueuse/core": "^10.11.1",
     "clone": "^2.1.2",
     "matter-js": "^0.20.0",

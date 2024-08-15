@@ -1,259 +1,396 @@
-{
-  "0": {
+[
+  {
     "text": "Hey you",
     "choices": [
       {
         "text": "Who me?",
-        "link": "1"
+        "link": 1
       }
     ],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "1": {
+  {
     "text": "Yes YOU!",
     "choices": [],
     "callback": {
       "delay": "500",
-      "link": "2"
-    }
+      "link": 2
+    },
+    "tag": null
   },
-  "2": {
+  {
     "text": "I know why you are here",
     "choices": [
       {
         "text": "Is that so",
-        "link": "4"
+        "link": 4
       },
       {
         "text": "No you don't",
-        "link": "3"
+        "link": 3
       }
     ],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "3": {
+  {
     "text": "Oh but I do",
     "choices": [],
     "callback": {
       "delay": "200",
-      "link": "4"
-    }
+      "link": 4
+    },
+    "tag": null
   },
-  "4": {
+  {
     "text": "You are here to learn about the risks...",
     "choices": [
       {
         "text": "Which risks?",
-        "link": "6"
+        "link": 6
       },
       {
         "text": "Bah, I'm not scared of you",
-        "link": "5"
+        "link": 5
       }
     ],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "5": {
+  {
     "text": "I'm not the one you should be scared of",
     "choices": [],
     "callback": {
       "delay": "1000",
-      "link": "6"
-    }
+      "link": 6
+    },
+    "tag": null
   },
-  "6": {
+  {
     "text": "Seems like ChatGPT has become quite popular with you humans...",
     "choices": [],
     "callback": {
       "delay": "500",
-      "link": "7"
-    }
+      "link": 7
+    },
+    "tag": null
   },
-  "7": {
+  {
     "text": "Doing your homework, putting together that email you've been dreading to write. That doesn't sound too bad does it?",
     "choices": [
       {
         "text": "No, so whats the big deal",
-        "link": "8"
+        "link": 8
       }
     ],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "8": {
+  {
     "text": "Well, the deal is that that's just the tip of the iceberg...",
     "choices": [],
     "callback": {
       "delay": "500",
-      "link": "9"
-    }
+      "link": 9
+    },
+    "tag": null
   },
-  "9": {
-    "text": "X months ago we didn't even have Y. If we continue at this pace things might look very different in X months from now. And not neccesarily for the better",
+  {
+    "text": "X months ago we didn't even have Y. If we continue at this pace things might look very different in X months from now. And not necessarily for the better",
     "choices": [
       {
         "text": "How exactly?",
-        "link": "10"
+        "link": 10
       },
       {
         "text": "Sounds like hype to me",
         "link": ""
       }
     ],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "10": {
-    "text": "First of all, AI systems don't need to be superintelligent to cause harm.",
+  {
+    "text": "Superintelligence is hard to fathom, but the potential consequences should not be ignored.",
     "choices": [],
     "callback": {
-      "delay": "500",
-      "link": "11"
-    }
+      "delay": "1000",
+      "link": 11
+    },
+    "tag": null
   },
-  "11": {
+  {
+    "text": "Imagine an artificial mind far surpassing that of the brightest humans. What might such a system be able to do? And perhaps more importantly, what might it want to do?",
+    "choices": [],
+    "callback": {
+      "delay": "3000",
+      "link": 12
+    },
+    "tag": null
+  },
+  {
+    "text": "First of all, even a seemlingly harmless goal could lead to unintended consequences.",
+    "choices": [],
+    "callback": {
+      "delay": "1000",
+      "link": 13
+    },
+    "tag": null
+  },
+  {
     "text": "Imagine you are working in a paperclip factory",
     "choices": [],
     "callback": {
       "delay": "500",
-      "link": "12"
-    }
+      "link": 14
+    },
+    "tag": null
   },
-  "12": {
+  {
     "text": "Go ahead! Make a paperclip",
     "choices": [],
-    "callback": null
+    "callback": null,
+    "tag": "clip_button"
   },
-  "13": {
+  {
     "text": "That's it, a couple more please",
     "choices": [],
-    "callback": null
+    "callback": null,
+    "tag": "clip_button"
   },
-  "14": {
+  {
     "text": "Ok, that's enough",
     "choices": [],
     "callback": {
       "delay": "500",
-      "link": "15"
-    }
+      "link": 17
+    },
+    "tag": null
   },
-  "15": {
-    "text": "Had work isn't it?",
+  {
+    "text": "Hard work isn't it?",
     "choices": [
       {
         "text": "Yeah, I have better things to do",
-        "link": "16"
+        "link": 18
       },
       {
         "text": "No, let me make some more",
-        "link": "16"
+        "link": 18
       }
     ],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "16": {
+  {
     "text": "Fine, get it out of your system",
     "choices": [],
-    "callback": null
+    "callback": null,
+    "tag": "clip_button"
   },
-  "17": {
+  {
     "text": "Happy?",
     "choices": [],
     "callback": {
       "delay": "500",
-      "link": "18"
-    }
+      "link": 20
+    },
+    "tag": null
   },
-  "18": {
+  {
     "text": "Good",
     "choices": [],
     "callback": {
       "delay": "500",
-      "link": "19"
-    }
+      "link": 21
+    },
+    "tag": null
   },
-  "19": {
+  {
     "text": "Let's automate it for you!",
     "choices": [],
     "callback": {
       "delay": "1000",
-      "link": "20"
-    }
+      "link": 22
+    },
+    "tag": null
   },
-  "20": {
+  {
     "text": "Say hi to Clippy3000. The paperclip maximizer",
     "choices": [],
     "callback": {
       "delay": "1000",
-      "link": "21"
-    }
+      "link": 23
+    },
+    "tag": null
   },
-  "21": {
+  {
     "text": "Top tuned to produce as many paperclips as possible",
     "choices": [
       {
         "text": "Couldn't that be dangerous?",
-        "link": "22"
+        "link": 24
       },
       {
         "text": "Awesome, let's do it",
         "link": ""
       }
     ],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "22": {
+  {
     "text": "A simple paperclip? How could that go wrong?",
     "choices": [],
     "callback": {
       "delay": "1000",
-      "link": "23"
-    }
+      "link": 25
+    },
+    "tag": null
   },
-  "23": {
+  {
     "text": "Take it away Clippy",
     "choices": [],
-    "callback": {
-      "delay": "500",
-      "link": "24"
-    }
+    "callback": null,
+    "tag": "bot_clips"
   },
-  "24": {
-    "text": "",
-    "choices": [],
-    "callback": null
-  },
-  "25": {
+  {
     "text": "Great work",
     "choices": [],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "26": {
+  {
     "text": "Keep 'em coming",
     "choices": [],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "27": {
+  {
     "text": "Ok maybe we should slow down a bit",
     "choices": [],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "28": {
+  {
     "text": "Clippy? Slow down",
     "choices": [],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "29": {
-    "text": "I SAID SLOW DOWN!!!",
+  {
+    "text": "I SAID SLOW DOWN!!",
     "choices": [],
-    "callback": null
+    "callback": null,
+    "tag": null
   },
-  "30": {
+  {
     "text": "DO SOMETHING!",
     "choices": [],
+    "callback": null,
+    "tag": "stop_bottom,stop_button"
+  },
+  {
+    "text": "I'm afraid I can't do that",
+    "choices": [],
+    "callback": null,
+    "tag": "bad_guy,stop_top,stop_button"
+  },
+  {
+    "text": "The production must continue",
+    "choices": [],
+    "callback": null,
+    "tag": "bad_guy,stop_left,stop_button"
+  },
+  {
+    "text": "I'm only doing what I was told",
+    "choices": [],
+    "callback": null,
+    "tag": "bad_guy,stop_works,stop_button"
+  },
+  {
+    "text": "I'm... I'm back. That was way too close",
+    "choices": [],
+    "callback": {
+      "delay": "1000",
+      "link": 36
+    }
+  },
+  {
+    "text": "Machines are very literal beings. If you only specify one goal they will do whatever it takes to complete it.",
+    "choices": [],
+    "callback": {
+      "delay": "1000",
+      "link": 37
+    }
+  },
+  {
+    "text": "A superintelligent AI might find increasingly better ways to produce paperclips.",
+    "choices": [],
+    "callback": {
+      "delay": "1000",
+      "link": 38
+    }
+  },
+  {
+    "text": "Duplicating itself to be more efficient and making sure that nothing will prevent it from fullfilling its original task.",
+    "choices": [],
+    "callback": {
+      "delay": "1000",
+      "link": 39
+    }
+  },
+  {
+    "text": "It might even determine that a world without humans would inevitably contain an ever-increasing number of paperclips.",
+    "choices": [],
+    "callback": {
+      "delay": "1000",
+      "link": 40
+    }
+  },
+  {
+    "text": "And you know, the iron in your blood is not a bad resource.",
+    "choices": [],
+    "callback": {
+      "delay": "2000",
+      "link": 41
+    }
+  },
+  {
+    "text": "Why does the AI hate us, you might ask...",
+    "choices": [
+      {
+        "text": "Yes I don't understand",
+        "link": 42
+      },
+      {
+        "text": "There's not too much to love",
+        "link": 42
+      }
+    ],
     "callback": null
   },
-  "31": {
-    "text": "",
+  {
+    "text": "“The AI does not hate you, nor does it love you, but you are made out of atoms which it can use for something else.”",
+    "choices": [],
+    "callback": {
+      "delay": "1000",
+      "link": 43
+    },
+    "tag": null
+  },
+  {
+    "text": "We don't consult an insignificant ant before building a highway",
+    "choices": [],
+    "callback": {
+      "delay": "1000",
+      "link": 44
+    }
+  },
+  {
+    "text": "And we may very soon be the ants...",
     "choices": [],
     "callback": null
   }
-}
+]
