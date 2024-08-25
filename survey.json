@@ -17,9 +17,9 @@
   {
     "question": "Do you believe ASI will possess emotions or consciousness similar to humans?",
     "answers": [
-      "Yes, it will develop emotions and self-awareness",
-      "Maybe, but its emotions will be different from human ones",
-      "No, it will remain purely logical and emotionless"
+      "Yes, emotions and self-awareness",
+      "Maybe, but they will be different from human ones",
+      "No, purely logical and emotionless"
     ]
   },
   {
@@ -27,7 +27,6 @@
     "answers": [
       "Within the next 2-3 years",
       "In 10-20 years",
-      "In 20-50 years",
       "More than 50 years from now",
       "Never"
     ]
@@ -35,8 +34,8 @@
   {
     "question": "Do you believe ASI could come to see humanity as a threat to its existence or goals?",
     "answers": [
-      "Yes, especially if our goals conflict with its own",
-      "Possibly, but it would seek to manage rather than eliminate the threat",
+      "Yes, if our goals conflict with its own",
+      "Possibly, but it would manage to coexist with us",
       "No, it would always prioritize human well-being"
     ]
   },

@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 
+button {
+    touch-action: manipulation;
+}
 
 .allow-select {
     user-select: text !important;
@@ -25,7 +28,7 @@
 @keyframes fade {
     0% {
         opacity: 0;
-
+        z-index: -2;
         /* Start below the final position */
     }
 

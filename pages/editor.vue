@@ -170,16 +170,16 @@
                     <div class="bg-black absolute w-dvw h-dvh animate-[fade_4s_forwards]"
                         v-if="(currentIndex == 101 || currentIndex == 102) && !isTyping">
                     </div>
-                    <video v-if="hasTag('bomb')" autoplay @ended="currentIndex++">
+                    <video ref="bomb" v-show="hasTag('bomb')" @ended="currentIndex++">
 
                         <source src="../assets/bomb.mp4" type="video/mp4">
 
                     </video>
                     <div class="w-dvw max-w-[600px] flex-col h-dvh rounded-md overflow-hidden items-center flex justify-center p-8"
-                        v-if="hasTag('video')">
+                        v-show="hasTag('video')">
 
                         <div class="overflow-hidden">
-                            <video class="h-30%" autoplay @ended="currentIndex++">
+                            <video ref="oppenheimer" class="h-30%" @ended="currentIndex++">
 
                                 <source src="../assets/oppenheimer-quote.mp4" type="video/mp4">
 
@@ -241,6 +241,8 @@ const survey = ref(survey_file)
 
 import { ref } from 'vue'
 const paperclip = ref(null)
+const oppenheimer = ref(null)
+const bomb = ref(null)
 const play = ref(false)
 //const nodes = ref(useCookie('nodes', { default: () => ref({}) }))
 const currentIndex = ref(null)
@@ -463,6 +465,21 @@ watch(currentIndex, async (newIndex, oldIndex) => {
 
     if (hasTag('survey')) {
         survey_index.value = parseInt(nodes.value[newIndex].tag.split('_')[1])
+    }
+
+    if (hasTag('video')) {
+
+        nextTick(() => {
+            oppenheimer.value.play()
+        })
+    }
+
+    if (hasTag('bomb')) {
+
+        nextTick(() => {
+            oppenheimer.value.pause()
+            bomb.value.play()
+        })
     }
 
 
