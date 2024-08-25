@@ -1,0 +1,50 @@
+[
+  {
+    "question": "What form do you think artificial superintelligence (ASI) will take?",
+    "answers": [
+      "A singular, all-knowing entity",
+      "Distributed across multiple systems and platforms",
+      "Integrated into human bodies or minds"
+    ]
+  },
+  {
+    "question": "Does artificial superintelligence (ASI) need a body to work?",
+    "answers": [
+      "Yes it needs to have a body in the real world",
+      "No it can run on a server without a physical form"
+    ]
+  },
+  {
+    "question": "Do you believe ASI will possess emotions or consciousness similar to humans?",
+    "answers": [
+      "Yes, it will develop emotions and self-awareness",
+      "Maybe, but its emotions will be different from human ones",
+      "No, it will remain purely logical and emotionless"
+    ]
+  },
+  {
+    "question": "When do you think artificial superintelligence (ASI) will be developed?",
+    "answers": [
+      "Within the next 2-3 years",
+      "In 10-20 years",
+      "In 20-50 years",
+      "More than 50 years from now",
+      "Never"
+    ]
+  },
+  {
+    "question": "Do you believe ASI could come to see humanity as a threat to its existence or goals?",
+    "answers": [
+      "Yes, especially if our goals conflict with its own",
+      "Possibly, but it would seek to manage rather than eliminate the threat",
+      "No, it would always prioritize human well-being"
+    ]
+  },
+  {
+    "question": "Do you think ASI will be more positive or negative for humanity?",
+    "answers": [
+      "More positive",
+      "More negative"
+    ]
+  }
+]

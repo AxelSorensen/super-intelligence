@@ -23,7 +23,8 @@ var Engine = Matter.Engine,
   Vertices = Matter.Vertices,
   Svg = Matter.Svg,
   Common = Matter.Common,
-  World = Matter.World
+  World = Matter.World,
+  Events = Matter.Events;
 
 window.decomp = decomp;
 const { width, height } = useWindowSize()
@@ -81,7 +82,11 @@ const loadImage = (url, onSuccess, onError) => {
 };
 import paperclipImage from '../assets/paperclip.png';
 
+const clips = []
 
+function clearWorld() {
+  Composite.clear(world, true, true);
+}
 
 function addClip() {
 
@@ -101,7 +106,11 @@ function addClip() {
     new_clip
   )
 
-
+  setTimeout(() => {
+    World.remove(world, new_clip)
+  }, 3000)
+  console.log(//number of bodies in the world
+    world.bodies.length)
   Body.applyForce(new_clip, { x: new_clip.position.x, y: new_clip.position.y }, { x: Math.random() * 0.01 - 0.005, y: Math.random() * - 0.001 - 0.015 })
   Body.setAngularVelocity(new_clip, Math.random() * 0.2 - 0.1);
 }
@@ -157,8 +166,13 @@ onMounted(() => {
 
 
 
+// Continuously check for bodies below the screen height
+
+
+
 defineExpose({
-  addClip
+  addClip,
+  clearWorld
 })
 
 

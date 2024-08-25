@@ -4,6 +4,63 @@
 
 
 
+.allow-select {
+    user-select: text !important;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        /* Start below the final position */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* End at the final position */
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+
+        /* Start below the final position */
+    }
+
+    50% {
+        opacity: 0;
+        z-index: 10;
+
+        /* End at the final position */
+    }
+
+
+    62.5% {
+        opacity: 1;
+        z-index: 10;
+        /* End at the final position */
+    }
+
+    70% {
+        opacity: 1;
+        z-index: 10;
+        /* End at the final position */
+    }
+
+    99.9% {
+        opacity: 0;
+        z-index: 10;
+    }
+
+    100% {
+        opacity: 0;
+        z-index: -2;
+    }
+}
+
+
 @keyframes blink-caret {
 
     0% {

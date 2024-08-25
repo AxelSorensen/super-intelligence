@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
         // Define the file path
 
         // Write the JSON data to the file
-        fs.writeFileSync('/Users/axelsorensen/Projects/superintelligence/nodes.json', JSON.stringify(body, null, 2), 'utf8');
+        fs.writeFileSync('/Users/axelsorensen/Projects/superintelligence/nodes_1.json', JSON.stringify(body, null, 2), 'utf8');
 
         return { success: true };
     } catch (error) {

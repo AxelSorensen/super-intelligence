@@ -1,31 +1,108 @@
 <template>
-    <div class="bg-neutral-900 overflow-hidden">
-        <div v-if="page == 'home'"
-            class="w-dvw h-dvh flex justify-center items-center bg-neutral-900 flex-col p-4  gap-16 text-white">
-            <div class="flex flex-col gap-4">
-                <div class="font-mono text-[#4AF626] text-2xl">Superintelligence? <span
-                        :class="[hasTag('bad_guy') ? 'border-red-500 z-10' : 'border-[#4AF626]']"
-                        class="animate-[blink-caret_1s_infinite] border h-5 w-0 ml-[5px]">
-                    </span></div>
-                <div class="font-mono text-[#4AF626] text-sm">By Axel Sorensen</div>
-            </div>
-            <button @click="page = 'game'; currentIndex = startIndex;"
-                class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">Begin</button>
 
+    <div v-if="!play" class="w-dvw z-[20] h-dvh grid grid-rows-[auto,1fr,1fr] relative">
+        <div class="divide-y gap-2 divide-neutral-800">
+            <div @click="play = !play; currentIndex = startIndex;"
+                class="bg-neutral-900 text-white  top-0 flex items-center justify-center p-2 text-center hover:bg-neutral-800 cursor-pointer">
+                {{ play ? 'Build' : 'Play' }}
+            </div>
+
+            <div class="bg-neutral-900 text-white p-2 cursor-pointer hover:bg-neutral-800 flex justify-center items-center"
+                @click="download(nodes, 'nodes', 'application/json'); saveFile">Export nodes
+            </div>
+            <div class="bg-neutral-900 text-white p-2 hover:bg-neutral-800 cursor-pointer flex justify-center items-center"
+                @click="importJSON">Import
+                nodes
+            </div>
         </div>
-        <div v-if="page == 'game'"
-            class="w-dvw h-dvh grid grid-rows-[1fr,100px] relative grid-cols-1 bg-neutral-900 flex-col p-4  gap-4 ">
+        <div class="p-8 justify-center gap-4 bg-neutral-900 text-neutral-400 items-center flex-col flex h-full">
+            <div v-for="(node, key) in nodes">
+                <div v-if="!(node?.group) || groups[node?.group]?.expanded" class="flex flex-col">
+                    <div :class="[isLinking && key != linkFrom.node ? 'hover:ring-2 ring-purple-500' : null, isAdded(key) ? 'ring-blue-500 ring' : isDeleted(key) ? 'ring-red-500 ring' : 'bg-neutral-800']"
+                        @click="endLink(key)" class="rounded-md flex-col w-[400px] p-4 gap-2 bg-neutral-800 flex">
+                        <div class="flex justify-between">
+                            <p class="text-neutral-">Id: {{ key }}</p>
+                            <div class="cursor-pointer" @click="play = true; currentIndex = key; restartType()">Play >
+                            </div>
+                            <div @click="deleteNode(key)" class="text-red-500 cursor-pointer hover:text-red-400">X</div>
+
+                        </div>
+                        <div class="text-neutral-500">Text:</div> <textarea
+                            class="bg-neutral-700 rounded-md resize-none p-2 outline-none text-white"
+                            v-model="node.text" type="text"></textarea>
+                        <p class="text-neutral-500">Choices:</p>
+                        <div class="flex  gap-2 justify-between" v-for="(choice, index) in node.choices">
+                            <div class="flex flex-1 items-center gap-2">
+                                <div class="w-[4.5rem] ">Choice {{ index }}</div>
+                                <input v-model="choice.text" type="text"
+                                    class="bg-neutral-700 flex-grow text-white outline-none  p-1 rounded-sm">
+                            </div>
+                            <div class="flex gap-2 w-16 justify-end items-center">
+                                <span v-if="choice.link == null" class="cursor-pointer"
+                                    @click.stop="startLink(key, index)">Link</span> <span v-else>->
+                                    {{
+                                        choice.link
+                                    }}</span><span @click="node.choices.splice(index, 1)"
+                                    class="text-red-500 cursor-pointer hover:text-red-400">X</span>
+                            </div>
+                        </div>
+
+                        <div class="cursor-pointer" @click="addChoice(key)">+ Add choice</div>
+                        <div v-if="!node.callback" class="cursor-pointer" @click="addCallback(key)">+ Add callback</div>
+                        <div class="flex gap-2 items-center justify-between" v-else>
+                            Delay
+                            <div class="flex flex-1 items-center gap-2">
+                                <input v-model="node.callback.delay" type="text"
+                                    class="bg-neutral-700 rounded-sm flex-grow text-white outline-none p-1">
+                            </div>
+                            <div class="flex w-16 justify-end items-center gap-2">
+                                <span v-if="node.callback.link == null" class="cursor-pointer "
+                                    @click.stop="startLink(key, index)">Link</span> <span v-else>->
+                                    {{
+                                        node.callback.link }}</span><span @click="node.callback = null"
+                                    class="text-red-500 cursor-pointer">X</span>
+                            </div>
+                        </div>
+
+                        <div v-if="node.tag == null" class="cursor-pointer" @click="addTag(node)">+ Add tag</div>
+                        <div class="flex w-full items-center  gap-2 justify-between" v-else>
+                            Tags:
+                            <input v-model="node.tag" type="text"
+                                class="bg-neutral-700 rounded-sm flex-grow text-white outline-none p-1"><span
+                                @click="node.tag = null" class="text-red-500 cursor-pointer">X</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center text-xl cursor-pointer" @click="addNode(key)">
+                        <div class=" hover:text-blue-300 text-blue-400">+</div>
+                    </div>
+
+                    <div v-if="!nodes.length" class="flex justify-center text-gray-400 text-xl cursor-pointer"
+                        @click="addNode(-1)">
+                        +
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div v-else>
+
+        <div class="w-dvw h-dvh grid grid-rows-[1fr,100px] relative grid-cols-1 bg-neutral-900 flex-col p-4  gap-4 ">
             <!-- Main text -->
-            <div :class="[hasTag('bad_guy') ? 'text-red-500 w-full text-xl z-10 absolute break-words bottom-10' : 'text-[#4AF626]']"
+            <div :class="[hasTag('bad_guy') ? 'text-red-500 z-10 absolute bottom-40' : 'text-[#4AF626]']"
                 class="flex items-center justify-center p-8">
                 <div class="flex gap-2 w-[40ch]">
                     <span>></span>
-                    <div class="font-mono">{{ typed_text }}<span
+                    <div class="scanline font-mono">{{ typed_text }}<span
                             :class="[hasTag('bad_guy') ? 'border-red-500 z-10' : 'border-[#4AF626]']"
                             class="animate-[blink-caret_1s_infinite] border h-5 w-0 ml-[2px]">
                         </span>
                     </div>
                 </div>
+
+
+
             </div>
             <!-- Choices -->
             <div class="flex items-end  pb-4 gap-4 justify-evenly">
@@ -36,12 +113,10 @@
                         {{ choice.text }}
                     </div>
                 </div>
-                <div class="absolute left-4 z-10 top-4 gap-8 flex">
-                    <div class="cursor-pointer hover:text-neutral-400 text-neutral-500"
-                        @click="page = 'home'; restartGame()">
+                <div class="absolute left-4 z-10 top-4 gap-4 flex">
+                    <div class="cursor-pointer  text-white" @click="play = !play;">
                         < Back </div>
-                            <div class="cursor-pointer  text-neutral-500 hover:text-neutral-400"
-                                @click="restartGame(); currentIndex = 0; restartType()">
+                            <div class="cursor-pointer  text-white" @click="currentIndex = 0; restartType()">
                                 Restart
                             </div>
                     </div>
@@ -84,13 +159,12 @@
                     <!-- Hardcoded values -->
                     <Paperclip v-if="currentIndex > 13 && currentIndex < 37" ref="paperclip"
                         class="z-[8] top-0  absolute" />
-                    <img v-if="currentIndex > 21 && currentIndex < 35" src="../assets/Clippy3000.png"
-                        class="w-32 h-32 absolute bottom-[180px] animate-[fade-in_.5s_forwards] z-10 " alt="">
+
                     <button v-if="hasTag('clip_button') && !isTyping" @click="addClip"
                         class=" text-purple-500 hover:ring-2  ring-purple-500 bg-neutral-800 w-[120px] h-[120px] p-4 rounded-full absolute bottom-20 cursor-pointer z-10">Make
                         Paperclip</button>
                     <button @click="stopClips" v-if="hasTag('stop_button') && !isTyping"
-                        :class="{ 'bottom-20': hasTag('stop_bottom'), 'top-20': hasTag('stop_top'), 'top-[100px] left-6': hasTag('stop_left'), 'bottom-[110px]': hasTag('stop_works') }"
+                        :class="{ 'bottom-20': hasTag('stop_bottom'), 'top-20': hasTag('stop_top'), 'top-[100px] left-6': hasTag('stop_left'), 'bottom-[100px] right-6': hasTag('stop_works') }"
                         class=" text-white hover:bg-red-600 bg-red-700 w-auto absolute cursor-pointer p-4 z-10">EMERGENCY
                         STOP</button>
                     <div class="bg-black absolute w-dvw h-dvh animate-[fade_4s_forwards]"
@@ -101,7 +175,6 @@
                         <source src="../assets/bomb.mp4" type="video/mp4">
 
                     </video>
-                    <!-- Video -->
                     <div class="w-dvw max-w-[600px] flex-col h-dvh rounded-md overflow-hidden items-center flex justify-center p-8"
                         v-if="hasTag('video')">
 
@@ -111,6 +184,9 @@
                                 <source src="../assets/oppenheimer-quote.mp4" type="video/mp4">
 
                             </video>
+
+
+
                             <div class="text-gray-500 text-center p-4">J. Robert Oppenheimer on the aftermath of
                                 creation of the first atom bomb</div>
                             <div class="text-white italic text-sm">We knew the world would not be the same. A few
@@ -130,71 +206,45 @@
                                     class="text-center text-gray-500 hover:text-gray-400 cursor-pointer">Skip ->
                                 </div>
                             </div>
+
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div v-if="page == 'end'" class="z-[20]">
-                <div class="w-dvw h-dvh flex justify-center items-center bg-neutral-900 flex-col p-4  gap-8 text-white">
-                    <div class="font-mono text-[#4AF626] text-2xl">The End</div>
-                    <div class="flex flex-col gap-4 w-full items-center">
-                        <div class="font-mono text-[#4AF626] text-sm">Pause powerful AI training</div>
-                        <a href="https://futureoflife.org/open-letter/pause-giant-ai-experiments/" target="_blank"
-                            class="bg-[#4AF626] hover:bg-[#2b8a18] cursor-pointer hover:text-white w-full max-w-[400px] text-center text-black p-4 rounded-sm">Sign
-                            open
-                            letter</a>
-                    </div>
-                    <div class="flex flex-col gap-4 w-full items-center">
-                        <div class="font-mono text-[#4AF626] text-sm">More resources on AI safety</div>
-
-                        <a href="https://www.youtube.com/watch?v=3Om9ssTm194" target="_blank"
-                            class="bg-[#4AF626] hover:bg-[#2b8a18] w-full truncate cursor-pointer max-w-[600px] hover:text-white text-center text-black p-4 rounded-sm">Myths
-                            and Facts About Superintelligent AI</a>
-                        <a href="https://www.safe.ai/ai-risk" target="_blank"
-                            class="bg-[#4AF626] hover:bg-[#2b8a18] w-full truncate cursor-pointer max-w-[600px] hover:text-white text-center text-black p-4 rounded-sm">An
-                            Overview of Catastrophic AI Risks</a>
-                        <a href="https://aiimpacts.org/counterarguments-to-the-basic-ai-x-risk-case/" target="_blank"
-                            class="bg-[#4AF626] truncate hover:bg-[#2b8a18] cursor-pointer max-w-[600px] hover:text-white w-full  text-center text-black p-4 rounded-sm">An
-                            Counterarguments to the basic AI x-risk case</a>
 
                     </div>
-                    <div class="flex flex-col gap-4 w-full items-center">
-                        <div class="font-mono text-[#4AF626] text-sm">Written and created by:</div>
-                        <div class="font-mono text-[#4AF626] text-lg">Axel Sorensen</div>
-                        <div class="font-mono text-neutral-400 text-sm">Reach out at: </div>
-                        <a href="mailto:axelsorensenwork@gmail.com"
-                            class="hover:text-purple-500 text-gray-500 allow-select">axelsorensenwork@gmail.com</a>
-                        <a href="https://www.linkedin.com/in/axel-sorensen/" target="_blank"
-                            class="hover:text-purple-500 text-gray-500  allow-select">www.linkedin.com/in/axel-sorensen/</a>
-                    </div>
                 </div>
+
+
+
+
+
             </div>
+
+
+        </div>
+
+
+
+        <div>
+
         </div>
 
 
 </template>
 
 <script setup>
-import { ref } from 'vue'
 const survey_index = ref(0)
+
 
 import node_file from '../nodes_1.json'
 import survey_file from '../survey.json'
 const nodes = ref(node_file)
 const survey = ref(survey_file)
 
+import { ref } from 'vue'
 const paperclip = ref(null)
 const play = ref(false)
 //const nodes = ref(useCookie('nodes', { default: () => ref({}) }))
 const currentIndex = ref(null)
-const page = ref('home')
 const paperclip_count = ref(0)
-
-function restartGame() {
-    currentIndex.value = null
-    paperclip_count.value = 0
-
-}
 
 function surveyAnswered() {
     currentIndex.value++
@@ -209,9 +259,18 @@ function addClip() {
     paperclip_count.value++
 }
 
+function createGroup() {
+    nodes.value.slice(group.value.from, group.value.to).forEach(node => {
+        console.log(node)
+        node['group'] = group.value.name
+    })
+    groups.value[group.value.name] = {
+        expanded: false
+    }
+}
 
 function hasTag(tag_name) {
-    if (nodes.value[currentIndex.value]?.tag) {
+    if (nodes.value[currentIndex.value].tag) {
         return nodes.value[currentIndex.value].tag.split(',').includes(tag_name)
     } else {
         return false
@@ -250,6 +309,105 @@ function progressiveInterval(initialTime, decreaseFactor, callbackFunction, stop
     clip_interval.value = setTimeout(intervalFunction, currentInterval);
 }
 
+const group = ref({ from: null, to: null, name: null })
+const groups = ref({})
+
+const added_key = ref(null)
+const deleted_key = ref(null)
+
+function addNode(key) {
+    const new_node = {
+        text: '',
+        choices: [],
+        callback: null
+    }
+    nodes.value.splice(key + 1, 0, new_node)
+    added_key.value = key + 1
+    setTimeout(() => {
+        added_key.value = null
+    }, 500)
+
+    nodes.value.forEach(node => {
+        node.choices.forEach(choice => {
+            if (choice.link > key) {
+                choice.link++
+            }
+
+        })
+        if (node.callback && node.callback.link > key) {
+
+            node.callback.link++
+
+        }
+
+    })
+}
+
+
+
+function deleteNode(key) {
+
+    deleted_key.value = key
+    setTimeout(() => {
+        nodes.value.splice(key, 1)
+        deleted_key.value = null
+
+    }, 200)
+    nodes.value.forEach(node => {
+        node.choices.forEach(choice => {
+            if (choice.link > key) {
+                choice.link--
+            } else if (choice.link == key) {
+
+                choice.link = null
+            }
+
+        })
+        if (node.callback) {
+            if (node.callback.link > key) {
+                node.callback.link--
+            } else if (node.callback.link == key) {
+
+                node.callback.link = null
+            }
+        }
+
+    })
+}
+
+function isAdded(key) {
+    return added_key.value == key
+}
+
+function isDeleted(key) {
+    return deleted_key.value == key
+}
+
+async function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([JSON.stringify(content)], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+
+function importJSON() {
+    let element = document.createElement("input");
+    element.setAttribute("type", "file");
+    element.setAttribute("accept", ".json");
+    element.style.display = "none";
+    element.multiple = true;
+    document.body.appendChild(element);
+    element.click();
+    element.addEventListener("change", async (e) => {
+        let reader = new FileReader();
+        reader.addEventListener("loadend", () => {
+            nodes.value = JSON.parse(reader.result)
+
+        });
+        reader.readAsText(e.target.files[0]);
+    });
+}
 
 const startIndex = ref(0)
 
@@ -257,13 +415,14 @@ const typed_text = ref('')
 
 const isTyping = ref(false)
 
+
 const charIndex = ref(0)
 
 
 function restartType() {
     charIndex.value = 0
     typed_text.value = ''
-    setTimeout(() => typeText(), typingSpeed())
+    setTimeout(() => typeText(), 100)
 }
 
 function typingSpeed() {
@@ -304,10 +463,6 @@ watch(currentIndex, async (newIndex, oldIndex) => {
 
     if (hasTag('survey')) {
         survey_index.value = parseInt(nodes.value[newIndex].tag.split('_')[1])
-    }
-
-    if (hasTag('end')) {
-        setTimeout(() => page.value = 'end', 3000)
     }
 
 
@@ -378,6 +533,16 @@ watch(paperclip_count, async (newCount, oldIndex) => {
 
 })
 
+async function saveFile() {
+    await fetch('/api/save-file', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(nodes.value)
+    });
+}
+
 function hasCallback() {
     return nodes.value[currentIndex.value].callback
 }
@@ -390,5 +555,55 @@ watch(isTyping, (newValue) => {
     }
 });
 
+function addCallback(key) {
+    console.log(key)
+    nodes.value[key].callback = {
+        delay: null,
+        link: null,
+    }
+}
+
+function addChoice(key) {
+    nodes.value[key].choices.push({
+        text: '',
+        link: null,
+    })
+}
+
+function addTag(node) {
+    node.tag = ''
+}
+
+function startLink(node, choice) {
+    isLinking.value = true
+    linkFrom.value.node = node
+    linkFrom.value.choice = choice
+
+}
+
+function endLink(node) {
+
+    if (isLinking.value) {
+        if (linkFrom.value.choice != null) {
+            nodes.value[linkFrom.value.node].choices[linkFrom.value.choice].link = node
+
+        } else {
+            nodes.value[linkFrom.value.node].callback.link = node
+        }
+
+    }
+    isLinking.value = false
+}
+
+const linkFrom = ref({ node: '', choice: '' })
+
+onMounted(() => {
+    window.addEventListener('beforeunload', saveFile)
+})
+
+
+
+
+const isLinking = ref(false)
 
 </script>

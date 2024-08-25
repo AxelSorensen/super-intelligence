@@ -36,11 +36,13 @@
   },
   {
     "text": "Oh but I do",
-    "choices": [],
-    "callback": {
-      "delay": "500",
-      "link": 4
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 4
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
@@ -60,20 +62,24 @@
   },
   {
     "text": "I'm not the one you should be scared of",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 6
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 6
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
     "text": "Seems like ChatGPT has become quite popular with you humans...",
-    "choices": [],
-    "callback": {
-      "delay": "500",
-      "link": 7
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 7
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
@@ -89,15 +95,17 @@
   },
   {
     "text": "Well, the deal is that that's just the tip of the iceberg...",
-    "choices": [],
-    "callback": {
-      "delay": "500",
-      "link": 9
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 9
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
-    "text": "X months ago we didn't even have Y. If we continue at this pace things might look very different in X months from now. And not necessarily for the better",
+    "text": "4 years ago AI models could barely put together a coherent sentence. If we continue at this pace things might look very different in 4 years from now. And not necessarily for the better",
     "choices": [
       {
         "text": "How exactly?",
@@ -113,37 +121,45 @@
   },
   {
     "text": "It is important to be critical, but the potential consequences should not be ignored.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 11
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 11
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Imagine an artificial mind far surpassing that of the brightest humans. What might such a system be able to do? And perhaps more importantly, what might it want to do?",
-    "choices": [],
-    "callback": {
-      "delay": "3000",
-      "link": 12
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 12
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
     "text": "First of all, even a seemlingly harmless goal could lead to unintended outcomes.",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 13
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 13
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
     "text": "Imagine you are working in a paperclip factory",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 14
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 14
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
@@ -208,20 +224,24 @@
   },
   {
     "text": "Let's automate it for you!",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 22
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 22
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
     "text": "Say hi to Clippy3000. The paperclip maximizer",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 23
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 23
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
@@ -243,7 +263,7 @@
     "text": "A simple paperclip? How could that go wrong?",
     "choices": [],
     "callback": {
-      "delay": "1000",
+      "delay": "1500",
       "link": 25
     },
     "tag": null
@@ -310,51 +330,63 @@
   },
   {
     "text": "I'm... I'm back. That was way too close",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 36
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 36
+      }
+    ],
+    "callback": null
   },
   {
     "text": "You see, machines are very literal beings. If you do not constrain their methods they will do whatever it takes to succeed.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 37
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 37
+      }
+    ],
+    "callback": null
   },
   {
     "text": "A superintelligent AI might find increasingly better ways to produce paperclips.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 38
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 38
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Duplicating or improving itself to be more efficient and making sure that nothing will prevent it from fullfilling its original goal.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 39
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 39
+      }
+    ],
+    "callback": null
   },
   {
     "text": "It might even determine that a world without humans would inevitably contain an ever-increasing number of paperclips.",
-    "choices": [],
-    "callback": {
-      "delay": "2500",
-      "link": 40
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 40
+      }
+    ],
+    "callback": null
   },
   {
     "text": "And you know... The iron in your blood is just another resource.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 41
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 41
+      }
+    ],
+    "callback": null
   },
   {
     "text": "\"Why does the AI hate us?\", you might ask...",
@@ -372,36 +404,44 @@
   },
   {
     "text": "“The AI does not hate you, nor does it love you, but you are made out of atoms which it can use for something else.”",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 43
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 43
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
     "text": "We don't consult an ant before building a highway",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 44
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 44
+      }
+    ],
+    "callback": null
   },
   {
     "text": "And we may very soon be the ants...",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 45
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 45
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Ok, let's take a step back",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 46
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 46
+      }
+    ],
+    "callback": null
   },
   {
     "text": "AI risks don't only stem from the system going rogue.",
@@ -435,19 +475,23 @@
   },
   {
     "text": "\"Seeing is believing\" used to be a valid expression. But these days AI generated content is becoming indistinguishable from reality.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 50
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 50
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Imagine the following headline:",
-    "choices": [],
-    "callback": {
-      "delay": "5000",
-      "link": 51
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 51
+      }
+    ],
+    "callback": null,
     "tag": "headline,pro_climate"
   },
   {
@@ -458,69 +502,85 @@
   },
   {
     "text": "Quite different...",
-    "choices": [],
-    "callback": {
-      "delay": "5000",
-      "link": 53
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 53
+      }
+    ],
+    "callback": null,
     "tag": "anti_climate"
   },
   {
     "text": "Framing is everything. At scale, AI systems could rewrite information to nudge humans towards a certain political agenda or even generate and spread fake news at an unbeatable rate.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 54
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 54
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
     "text": "Words can be wielded like weapons and mere language can change minds...",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 55
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 55
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Speaking of weapons, bio-warfare is one the top risks posed by advanced AI.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 56
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 56
+      }
+    ],
+    "callback": null
   },
   {
     "text": "This danger has already been demonstrated. Researchers have shown that it look less than 6 hours for an AI to generate 40,000 new toxic molecules.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 57
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 57
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Many of them more deadly than any existing chemical warfare agents.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 58
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 58
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Cybersecurity is also at risk. In 2023 the U.S. State Department confirmed that state actors had been observed using AI to write malicious software.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 59
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 59
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Again, existential risk might not be caused by AI but rather through the use of AI and the escalation of the superintelligence arms race.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 60
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 60
+      }
+    ],
+    "callback": null
   },
   {
     "text": "It is not the existence of nuclear bombs that cause harm, it is the use...",
@@ -536,7 +596,7 @@
     "text": "Let me tell you...",
     "choices": [],
     "callback": {
-      "delay": "500",
+      "delay": "1500",
       "link": 62
     }
   },
@@ -548,43 +608,53 @@
   },
   {
     "text": "Hmm, interesting!",
-    "choices": [],
-    "callback": {
-      "delay": "500",
-      "link": 64
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 64
+      }
+    ],
+    "callback": null
   },
   {
     "text": "It is hard to say exactly how things will pan out. ",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 65
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 65
+      }
+    ],
+    "callback": null
   },
   {
     "text": "If artificial superintelligence emerges as a singular entity this might make it prone to misuse by those who control it (if anyone can)",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 66
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 66
+      }
+    ],
+    "callback": null
   },
   {
     "text": "On the other hand a decentralized system might be harder to manage and align",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 67
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 67
+      }
+    ],
+    "callback": null
   },
   {
     "text": "If ASI comes in the form human augmentation where human intelligence is extended, issues of severe cognitive inequality could arise if only the rich can afford to improve themselves.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 68
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 68
+      }
+    ],
+    "callback": null
   },
   {
     "text": "What about the it's actual appearance? Does it look more human than machine? And does it even need to have a body?",
@@ -594,19 +664,23 @@
   },
   {
     "text": "Tough question. Many real world tasks require manipulation of the physical space. However interaction doesn't have to be direct.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 70
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 70
+      }
+    ],
+    "callback": null
   },
   {
     "text": "In the same way that you might ask a friend to hand you the remote, a superintelligent AI might use human labour or other embodied systems to carry out physical tasks for it.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 71
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 71
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Researchers have already demonstrated an AI independently hiring a human online to solve \"Proove you are not a robot\" tasks and even worse lie about it's identity.",
@@ -638,27 +712,33 @@
   },
   {
     "text": "Truth can be hard to verify especially if AI's are reasoning at abstraction we can't even comprehend",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 74
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 74
+      }
+    ],
+    "callback": null
   },
   {
     "text": "On the other hand, penalizing an AI for being deceptive can incentivize both truthfullness and being a better deciever",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 76
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 75
+      }
+    ],
+    "callback": null
   },
   {
     "text": "This is a tricky problem. Penalizing an AI for being deceptive can incentivize both truthfullness and being a better deciever",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 76
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 76
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Alright, we've talked about the more synical aspects of superintelligence but how might the AI feel? Does it feel anything?",
@@ -668,28 +748,34 @@
   },
   {
     "text": "We tend to anthropomorhize or attribute human characteristics to non human entities. Emotions are not necessarily required for an intelligent agent and an emotional AI might not be in our interest.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 78
-    },
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 78
+      }
+    ],
+    "callback": null,
     "tag": null
   },
   {
     "text": "Imagine a superintelligent being with infinite means throwing a tantrum...",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 79
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 79
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Scary isn't it?",
-    "choices": [],
-    "callback": {
-      "delay": "500",
-      "link": 80
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 80
+      }
+    ],
+    "callback": null
   },
   {
     "text": "But all of this is far into the future no? What do you think?",
@@ -699,99 +785,123 @@
   },
   {
     "text": "There isn't clear consensus about exactly when superintelligence will be developed. Some researchers say in 20-30 years while others predict within the next 4 years.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 82
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 82
+      }
+    ],
+    "callback": null
   },
   {
     "text": "One thing is for certain however. The ASI timelines are getting shorter and shorter as the technology advances. A survey of 2,778 researchers conducted 1 year apart showed a 13 year difference between the predictions of when human level intelligence would be achieved.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 83
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 83
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Nick Bostrom, a prominent philosopher in the field of AI ethics and existential risk predicts that once human level intellence is reached, superintelligence will follow shortly after.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 84
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 84
+      }
+    ],
+    "callback": null
   },
   {
     "text": "This goes to show how rapidly the field is moving...",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 85
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 85
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Don't get me wrong, superintelligence could have an incredibly positive impact on the world.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 86
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 86
+      }
+    ],
+    "callback": null
   },
   {
     "text": "From accelerating scientific discovery (curing cancer or providing cheap medication to low resource countries) to solving complex global problems like poverty and famine.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 87
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 87
+      }
+    ],
+    "callback": null
   },
   {
     "text": "But as the old saying goes: \"With great power comes great responsibility\" and superintelligence is a double edged sword.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 88
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 88
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Finally let's revisit the fundamental question of why superintelligence might want to seek power. Well, it's only logical...",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 89
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 89
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Think of it like this. For any possible agent pursuing any possible goal, there exists subgoals, so called \"instrumental goals\", that are useful intermediaries for the final goal.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 90
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 90
+      }
+    ],
+    "callback": null
   },
   {
     "text": "For example, in order for an AI agent to fetch a cup of coffee it needs to stay \"alive\" and in order to stay alive it needs to avoid being turned of",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 91
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 91
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Self-preservation seems to be naturally incentivized even by a simple task.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 92
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 92
+      }
+    ],
+    "callback": null
   },
   {
     "text": "\"You can’t fetch the coffee if you’re dead\"",
-    "choices": [],
-    "callback": {
-      "delay": "1000",
-      "link": 93
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 93
+      }
+    ],
+    "callback": null
   },
   {
     "text": "What about us? How might the AI view humanity?",
@@ -801,59 +911,73 @@
   },
   {
     "text": "In order to avoid being turned off the AI seeks control of it's environment, in order to stop possible interventions. ",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 95
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 95
+      }
+    ],
+    "callback": null
   },
   {
     "text": "If an agent retains its present goals into the future, then its present goals will\nbe more likely to be achieved by its future self. This incentivizes the agent to prevent alterations once it has been instructed.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 96
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 96
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Finally, a superintelligent being might not think like us. An AI rewarded for cleaning up messes might create more messes for itself to clean.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 97
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 97
+      }
+    ],
+    "callback": null
   },
   {
     "text": "And an AI rewarded for saving human lives in danger might...",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 98
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 98
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Well my friend, you've made it to the end. What a long strange trip it's been.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 99
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 99
+      }
+    ],
+    "callback": null
   },
   {
     "text": "The capabilities of AI systems are growing faster than ever and we are not slowing down.",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 100
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 100
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Regret is not worth much when its already to late",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 101
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 101
+      }
+    ],
+    "callback": null
   },
   {
     "text": "Haven't we been here before? This reminds me of something...",
@@ -877,26 +1001,64 @@
   },
   {
     "text": "Superintelligent AI may pose one of the largest existential risk to humanity, if not handled correctly.",
-    "choices": [],
-    "callback": {
-      "delay": "2000",
-      "link": 105
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 105
+      }
+    ],
+    "callback": null
   },
   {
     "text": "If you are a bit worried you are not alone",
-    "choices": [],
-    "callback": {
-      "delay": "1500",
-      "link": 106
-    }
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 106
+      }
+    ],
+    "callback": null
   },
   {
     "text": "More than 33.707 people around the world (including top AI scientists) have signed an open letter to pause the training of more powerful models until we understand them better.",
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 107
+      }
+    ],
+    "callback": null
+  },
+  {
+    "text": "I hope I made you think, fore that is all I wanted. Not to tell you WHAT to think but to provide you with the stakes at hand and let you decide. ",
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 108
+      }
+    ],
+    "callback": null
+  },
+  {
+    "text": "So... what do you say?",
     "choices": [],
-    "callback": {
-      "delay": "3000",
-      "link": null
-    }
+    "callback": null,
+    "tag": "survey,survey_5"
+  },
+  {
+    "text": "I guess only time will tell, but you have a chance to push history in the right direction",
+    "choices": [
+      {
+        "text": "Continue",
+        "link": 110
+      }
+    ],
+    "callback": null
+  },
+  {
+    "text": "Will you?",
+    "choices": [],
+    "callback": null,
+    "tag": "end"
   }
 ]
