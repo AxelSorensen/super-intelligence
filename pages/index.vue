@@ -1,4 +1,5 @@
 <template>
+    <div @click="showGoTo = !showGoTo" class="absolute top-0 w-8 h-8 right-0 cursor-pointer"></div>
     <div class="bg-neutral-900 overflow-hidden">
 
         <div v-if="page == 'home'"
@@ -17,6 +18,13 @@
                             ? 'Restart' : 'Start' }}</button>
                 <button v-if="indexCookie" @click="page = 'game'; currentIndex = indexCookie;"
                     class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">Continue</button>
+                <div v-if="showGoTo" class="flex gap-2 items-center">
+                    <div>Go to</div>
+                    <input v-model="go_to_num" type="text" class="w-12 bg-neutral-500 rounded-sm px-1 outline-none">
+                    <div @click="page = 'game'; currentIndex = go_to_num;"
+                        class="text-purple-500 rounded-sm cursor-pointer">->
+                    </div>
+                </div>
             </div>
         </div>
         <div v-if="page == 'game'"
@@ -52,7 +60,7 @@
                                 Restart
                             </div> -->
                             <div class="flex-grow overflow-hidden bg-neutral-700 rounded-full">
-                                <div class="h-2 bg-neutral-500 rounded-full"
+                                <div class="h-2 bg-neutral-500 rounded-full select-none"
                                     :style="{ width: `${Math.round((currentIndex / nodes.length) * 100)}%` }">
                                 </div>
                             </div>
@@ -96,8 +104,7 @@
                 <!-- Paper clip -->
                 <div class="absolute w-dvw h-dvh flex justify-center">
                     <!-- Hardcoded values -->
-                    <Paperclip v-show="currentIndex > 19 && currentIndex < 41" ref="paperclip"
-                        class="top-0  absolute" />
+                    <Paperclip v-if="currentIndex > 18 && currentIndex < 41" ref="paperclip" class="top-0  absolute" />
                     <img v-show="currentIndex > 27 && currentIndex < 40" src="../assets/Clippy9000.png"
                         class="w-32 h-32 absolute bottom-[180px] animate-[fade-in_.5s_forwards] z-10 " alt="">
                     <button v-if="hasTag('clip_button') && !isTyping" @click="addClip"
@@ -108,7 +115,7 @@
                         class=" text-white hover:bg-red-600  select-none bg-red-700 w-auto absolute cursor-pointer p-4 z-10">EMERGENCY
                         STOP</button>
                     <div class="bg-black absolute w-dvw h-dvh animate-[fade_4s_forwards]"
-                        v-if="(currentIndex == 105 || currentIndex == 106) && !isTyping">
+                        v-if="(currentIndex == 106 || currentIndex == 107) && !isTyping">
                     </div>
                     <video playsinline webkit-playsinline ref="bomb" v-show="hasTag('bomb')" @ended="currentIndex++">
 
@@ -206,9 +213,10 @@ const play = ref(false)
 //const nodes = ref(useCookie('nodes', { default: () => ref({}) }))
 const currentIndex = ref(null)
 const indexCookie = useCookie('indexCookie', { default: () => ref(0) })
-
+const showGoTo = ref(false)
 const page = ref('home')
 const paperclip_count = ref(0)
+const go_to_num = ref(0)
 
 function restartGame() {
     currentIndex.value = null
@@ -316,6 +324,11 @@ function runCallback(index) {
 
 // Type text when entering new node
 watch(currentIndex, async (newIndex, oldIndex) => {
+
+    if (newIndex === 41) {
+        const element = document.getElementById("canvas");
+        element.remove();
+    }
     indexCookie.value = newIndex.toString()
     restartType()
     typeText()
@@ -345,6 +358,22 @@ watch(currentIndex, async (newIndex, oldIndex) => {
             oppenheimer.value.pause()
             bomb.value.play()
         })
+    }
+
+    if (currentIndex.value == 19) {
+        paperclip_count.value = 0
+    }
+
+    if (currentIndex.value == 20) {
+        paperclip_count.value = 1
+    }
+
+    if (currentIndex.value == 23) {
+        paperclip_count.value = 5
+    }
+
+    if (currentIndex.value == 29) {
+        paperclip_count.value = 0
     }
 
 

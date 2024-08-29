@@ -171,7 +171,7 @@
     "callback": null
   },
   {
-    "text": "Finally superintelligence might be so qualitatively different from human intelligence that it reasons at levels we can't comprehend.",
+    "text": "Finally, superintelligence might be so qualitatively different from human intelligence that it reasons at levels we can't comprehend.",
     "choices": [
       {
         "text": "Continue",
@@ -709,7 +709,7 @@
     "callback": null
   },
   {
-    "text": "What about the it's actual appearance? Does it look more human than machine? And does it even need to have a body?",
+    "text": "What about it's actual appearance? Does it look more human than machine? And does it even need to have a body?",
     "choices": [],
     "callback": null,
     "tag": "survey,survey_1"
@@ -735,7 +735,7 @@
     "callback": null
   },
   {
-    "text": "Researchers have already demonstrated an AI independently hiring a human online to solve \"Proove you are not a robot\" tasks and even worse lie about it's identity.",
+    "text": "Researchers have already demonstrated an AI independently hiring a human online to solve CAPTCHA (Proove you are not a robot) tasks and even worse lie about it's identity.",
     "choices": [
       {
         "text": "Why do AI's lie?",
@@ -749,7 +749,7 @@
     "callback": null
   },
   {
-    "text": "Well, it's not that the AI inherently wants to lie to us, but if lying advances the objective at hand this is the route it will choose",
+    "text": "Well, it's not that the AI inherently wants to lie to us, but if lying advances the objective at hand, this is the route it will choose",
     "choices": [
       {
         "text": "Can't we punish it for lying?",
@@ -793,7 +793,7 @@
     "callback": null
   },
   {
-    "text": "Alright, we've talked about the more synical aspects of superintelligence but how might the AI feel? Does it feel anything?",
+    "text": "Alright, we've talked about the more cynical aspects of superintelligence but how might the AI feel? Does it feel anything?",
     "choices": [],
     "callback": null,
     "tag": "survey,survey_2"
@@ -906,7 +906,7 @@
     "callback": null
   },
   {
-    "text": "Finally let's revisit the fundamental question of why superintelligence might want to seek power. Well, it's only logical...",
+    "text": "Finally, let's revisit the fundamental question of why superintelligence might want to seek power. Well, it's only logical...",
     "choices": [
       {
         "text": "Continue",
