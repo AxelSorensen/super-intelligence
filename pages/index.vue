@@ -104,7 +104,7 @@
                 <!-- Paper clip -->
                 <div class="absolute w-dvw h-dvh flex justify-center">
                     <!-- Hardcoded values -->
-                    <Paperclip v-if="currentIndex > 18 && currentIndex < 41" ref="paperclip" class="top-0  absolute" />
+                    <Paperclip v-if="currentIndex > 17 && currentIndex < 41" ref="paperclip" class="top-0  absolute" />
                     <img v-show="currentIndex > 27 && currentIndex < 40" src="../assets/Clippy9000.png"
                         class="w-32 h-32 absolute bottom-[180px] animate-[fade-in_.5s_forwards] z-10 " alt="">
                     <button v-if="hasTag('clip_button') && !isTyping" @click="addClip"
