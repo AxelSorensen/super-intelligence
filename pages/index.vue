@@ -211,6 +211,7 @@ import type_3 from '../assets/type_3.mp3'
 import type_4 from '../assets/type_4.mp3'
 import type_5 from '../assets/type_5.mp3'
 import clip from '../assets/clip.mp3'
+import { useSound } from '@vueuse/sound'
 const survey_index = ref(0)
 
 import node_file from '../nodes_1.json'
@@ -232,7 +233,7 @@ const showGoTo = ref(false)
 const page = ref('home')
 const paperclip_count = ref(0)
 const go_to_num = ref(0)
-const sounds = [new Audio(type_1), new Audio(type_2), new Audio(type_3), new Audio(type_4), new Audio(type_5)];
+const sounds = [useSound(type_1), useSound(type_2), useSound(type_3), useSound(type_4), useSound(type_5)];
 
 
 function restartGame() {
@@ -260,7 +261,7 @@ function addClip() {
     if (now - lastPlayTime >= cooldownPeriod) {
         // Play the clip sound
         if (soundOn.value) {
-            const clip_sound = new Audio(clip);
+            const clip_sound = useSound(clip);
             clip_sound.play();
         }
 
@@ -344,7 +345,7 @@ function typeText() {
         isTyping.value = true
         if (soundOn.value) {
             const typingSound = sounds[Math.floor(Math.random() * sounds.length)];
-            typingSound.currentTime = 0;
+
             typingSound.volume = 0.5; // rewind to start to handle fast typing
             typingSound.play();
         }
