@@ -635,10 +635,10 @@
     "callback": null
   },
   {
-    "text": "It is not the existence of nuclear bombs that cause harm, it is the use...",
+    "text": "It is not the existence of nuclear power that causes harm, it is the use...",
     "choices": [
       {
-        "text": "Ok, but what does superintelligence actually look like?",
+        "text": "Ok, but what form of superintelligence is most likely?",
         "link": 66
       }
     ],
@@ -846,7 +846,7 @@
     "callback": null
   },
   {
-    "text": "One thing is for certain however. The ASI timelines are getting shorter and shorter as the technology advances. A survey of 2,778 researchers conducted 1 year apart showed a 13 year difference between the predictions of when human level intelligence would be achieved.",
+    "text": "One thing is for certain however. The timeline for achieving ASI is rapidly changing. In just one year, predictions from 2,778 researchers for reaching human-level intelligence were shortened by 13 years.",
     "choices": [
       {
         "text": "Continue",
@@ -866,7 +866,7 @@
     "callback": null
   },
   {
-    "text": "This goes to show how rapidly the field is moving...",
+    "text": "Since AI will be able to exponentially replicate and improve itself in a so-called \"intelligence explosion.\"",
     "choices": [
       {
         "text": "Continue",
@@ -1022,7 +1022,7 @@
     "callback": null
   },
   {
-    "text": "Regret is not worth much when its already to late",
+    "text": "Regret is not worth much when its already too late",
     "choices": [
       {
         "text": "Continue",
@@ -1052,7 +1052,7 @@
     "tag": "bomb"
   },
   {
-    "text": "Superintelligent AI may pose one of the largest existential risk to humanity, if not handled correctly.",
+    "text": "Superintelligent AI may pose one of the largest existential risk to humanity if not handled correctly.",
     "choices": [
       {
         "text": "Continue",
@@ -1098,7 +1098,7 @@
     "tag": "survey,survey_5"
   },
   {
-    "text": "I guess only time will tell, but you have a chance to push history in the right direction",
+    "text": "I guess only time will tell, but by speaking up and educating yourself you have a chance to push history in the right direction",
     "choices": [
       {
         "text": "Continue",

@@ -12,8 +12,9 @@
             </div>
             <div class="flex flex-col gap-4 w-full items-center justify-center">
                 <button @click="page = 'game'; currentIndex = startIndex; restartGame"
-                    class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">{{ indexCookie
-                        ? 'Restart' : 'Start'}}</button>
+                    class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">{{
+                        indexCookie
+                            ? 'Restart' : 'Start' }}</button>
                 <button v-if="indexCookie" @click="page = 'game'; currentIndex = indexCookie;"
                     class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">Continue</button>
             </div>
@@ -95,8 +96,9 @@
                 <!-- Paper clip -->
                 <div class="absolute w-dvw h-dvh flex justify-center">
                     <!-- Hardcoded values -->
-                    <Paperclip v-if="currentIndex > 13 && currentIndex < 37" ref="paperclip" class="top-0  absolute" />
-                    <img v-if="currentIndex > 21 && currentIndex < 35" src="../assets/Clippy9000.png"
+                    <Paperclip v-show="currentIndex > 19 && currentIndex < 41" ref="paperclip"
+                        class="top-0  absolute" />
+                    <img v-show="currentIndex > 27 && currentIndex < 40" src="../assets/Clippy9000.png"
                         class="w-32 h-32 absolute bottom-[180px] animate-[fade-in_.5s_forwards] z-10 " alt="">
                     <button v-if="hasTag('clip_button') && !isTyping" @click="addClip"
                         class=" text-purple-500 hover:ring-2 select-none  ring-purple-500 bg-neutral-800 w-[120px] h-[120px] p-4 rounded-full absolute bottom-20 cursor-pointer z-10">Make
