@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import Icons from 'unplugin-icons/vite'
 export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: true },
@@ -8,6 +9,14 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  vite: {
+    plugins: [
+      Icons({
+        // the feature below is experimental ⬇️
+        autoInstall: true
+      })
+    ]
   },
 
 

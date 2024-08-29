@@ -181,7 +181,7 @@
                         <div class="overflow-hidden">
                             <video ref="oppenheimer" class="h-30%" @ended="currentIndex++">
 
-                                <source src="../assets/oppenheimer-quote.mp4" type="video/mp4">
+                                <source src="../assets/oppenheimer.mp4" type="video/mp4">
 
                             </video>
 
