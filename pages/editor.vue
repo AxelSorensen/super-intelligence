@@ -135,22 +135,22 @@
                     <div v-show="hasTag('pro_climate') && !isTyping" class=" text-[#4AF626] mt-20 text-1xl font-mono">
                         Historic Green
                         Legislation
-                        Unveiled to Combat Climate
+                        will Combat Climate
                         Change and Protect Future Generations</div>
                     <div v-show="hasTag('stay_climate')" class=" text-[#4AF626] mt-20 text-1xl font-mono">Historic
                         Green
                         Legislation
-                        Unveiled to Combat Climate
+                        will Combat Climate
                         Change and Protect Future Generations</div>
 
                     <h1 v-show="hasTag('anti_climate')" class=" text-red-500 mt-20 text-1xl font-mono">Radical Green
                         Agenda
                         Threatens Economic Stability
                         and Personal
-                        Freedoms in the Name of Climate Activism
+                        Freedom
                     </h1>
                     <button @click="rephrase"
-                        class=" text-white hover:bg-blue-600 bg-blue-700 w-auto absolute cursor-pointer p-4 z-10 bottom-40"
+                        class=" text-white hover:bg-blue-700 bg-blue-800 w-auto absolute cursor-pointer p-4 z-10 bottom-40"
                         v-if="hasTag('rephrase')">REPHRASE WITH AI</button>
                 </div>
 

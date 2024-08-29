@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-dvw h-dvh overflow-hidden">
-    <canvas id="canvas" class="absolute top-0"></canvas>
+    <canvas id="canvas" class="absolute top-0 z-[0]"></canvas>
   </div>
 
 </template>

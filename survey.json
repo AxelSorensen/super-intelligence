@@ -10,8 +10,8 @@
   {
     "question": "Does artificial superintelligence (ASI) need a body to work?",
     "answers": [
-      "Yes it needs to have a body in the real world",
-      "No it can run on a server without a physical form"
+      "Yes, it needs to have a body in the real world",
+      "No, it can run on a server without a physical form"
     ]
   },
   {
@@ -26,8 +26,8 @@
     "question": "When do you think artificial superintelligence (ASI) will be developed?",
     "answers": [
       "Within the next 2-3 years",
-      "In 10-20 years",
-      "More than 50 years from now",
+      "In 3-10 years",
+      "More than 10 years from now",
       "Never"
     ]
   },
