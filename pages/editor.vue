@@ -261,15 +261,15 @@ function addClip() {
     paperclip_count.value++
 }
 
-function createGroup() {
-    nodes.value.slice(group.value.from, group.value.to).forEach(node => {
-        console.log(node)
-        node['group'] = group.value.name
-    })
-    groups.value[group.value.name] = {
-        expanded: false
-    }
-}
+// function createGroup() {
+//     nodes.value.slice(group.value.from, group.value.to).forEach(node => {
+
+//         node['group'] = group.value.name
+//     })
+//     groups.value[group.value.name] = {
+//         expanded: false
+//     }
+// }
 
 function hasTag(tag_name) {
     if (nodes.value[currentIndex.value].tag) {
@@ -294,7 +294,7 @@ function progressiveInterval(initialTime, decreaseFactor, callbackFunction, stop
     function intervalFunction() {
         // Check the stop condition
         if (stopCondition()) {
-            console.log('Interval stopped');
+            ('Interval stopped');
             return; // Exit the function and stop further execution
         }
         // Execute the passed callback function
@@ -573,7 +573,7 @@ watch(isTyping, (newValue) => {
 });
 
 function addCallback(key) {
-    console.log(key)
+
     nodes.value[key].callback = {
         delay: null,
         link: null,

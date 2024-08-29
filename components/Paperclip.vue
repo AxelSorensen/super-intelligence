@@ -2,96 +2,59 @@
   <div class="relative w-dvw h-dvh overflow-hidden">
     <canvas id="canvas" class="absolute top-0 pointer-events-none"></canvas>
   </div>
-
 </template>
 
 <script setup>
-
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Matter from 'matter-js';
 import "pathseg";
-import decomp from "poly-decomp"
-import clone from 'clone'
+import decomp from "poly-decomp";
+import clone from 'clone';
 import { useWindowSize } from '@vueuse/core';
-const scene = ref(null);
-var Engine = Matter.Engine,
-  Render = Matter.Render,
-  Runner = Matter.Runner,
-  Bodies = Matter.Bodies,
-  Composite = Matter.Composite,
-  Body = Matter.Body,
-  Vertices = Matter.Vertices,
-  Svg = Matter.Svg,
-  Common = Matter.Common,
-  World = Matter.World,
-  Events = Matter.Events;
 
-window.decomp = decomp;
-const { width, height } = useWindowSize()
-// create an engine
-// var ground = Bodies.rectangle(400, 400, 810, 60, { isStatic: true });
-var engine = Engine.create();
-// ground.render.visible = false;
+const { width, height } = useWindowSize();
+const engine = Matter.Engine.create();
+const world = engine.world;
 
-const world = engine.world
-// create two boxes and a ground
+let render;
+let runner;
+let resizeListener;
+
 const paths = [
-  "M289.05,84.63L98.225,308.136c-6.35,7.44-9.126,17.291-7.594,26.954l10.514,66.144c1.32,8.312,8.484,14.441,16.901,14.44h66.971c9.785,0,19.079-4.283,25.434-11.725l206.015-241.29c5.93-6.943,5.104-17.379-1.841-23.305l-42.83-36.57c-6.946-5.928-17.38-5.104-23.31,1.837l-152.4,178.477c-3.312,3.872-1.941,7.557-0.754,15.562c0.647,4.358,4.409,7.572,8.817,7.528c8.201-0.082,11.959,0.677,15.254-3.186l104.745-122.653l30.031,25.641l-108.396,126.93c-5.823,6.821-14.307,10.795-23.272,10.904h-40.639c-10.349,0.124-19.191-6.943-20.691-17.18l-5.896-40.215c-1.304-8.875,1.292-17.878,7.118-24.697L321.757,75.111c18.261-21.39,50.409-23.929,71.803-5.664l50.576,43.18c21.395,18.265,23.932,50.414,5.666,71.806L235.457,435.479c-10.447,12.243-25.735,19.284-41.83,19.271h-89.321c-19.688-0.012-36.449-14.382-39.549-33.821l-14.072-88.213c-2.53-15.89,2.027-32.097,12.479-44.339L259.017,58.988L289.05,84.63z"
+  // Your SVG paths here
 ];
 
-var vertexSets = []
-
-const clip = paths.map((path, i) => {
-  var newElement = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "path"
-  );
+const vertexSets = paths.map((path) => {
+  const newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
   newElement.setAttribute("d", path);
+  const points = Matter.Svg.pathToVertices(newElement, 30);
+  return Matter.Vertices.scale(points, 0.1, 0.1);
+});
 
-  var points = Svg.pathToVertices(newElement, 30);
-  vertexSets.push(Vertices.scale(points, 0.1, 0.1));
-
-  return Bodies.fromVertices(
+const clip = vertexSets.map((vertices, i) => {
+  return Matter.Bodies.fromVertices(
     width.value / 2 + i * 150,
     height.value / 2 + i * 50,
-    vertexSets,
+    vertices,
     {
-
       isSensor: true,
       render: {
         fillStyle: "#4AF626",
         strokeStyle: "#4AF626",
-
-      }
+      },
     },
     true
-  )
-})
+  );
+});
 
-const path = '../assets/paperclip.png';
-const image = new Image();
-image.src = path;
-
-const loadImage = (url, onSuccess, onError) => {
-  const img = new Image();
-  img.onload = () => {
-    onSuccess(img.src);
-  };
-  img.onerror = onError();
-  img.src = url;
-};
 import paperclipImage from '../assets/paperclip.png';
 
-const clips = []
-
 function clearWorld() {
-  Composite.clear(world, true, true);
+  Matter.Composite.clear(world, true, true);
 }
 
 function addClip() {
-
-  // const new_clip = clone(clip)
-  const new_clip = Bodies.circle(width.value / 2, height.value / 1.5, 10, {
+  const newClip = Matter.Bodies.circle(width.value / 2, height.value / 1.5, 10, {
     render: {
       sprite: {
         texture: paperclipImage,
@@ -100,82 +63,64 @@ function addClip() {
       }
     },
     isSensor: true,
-  })
-  World.add(
-    world,
-    new_clip
-  )
+  });
+
+  Matter.World.add(world, newClip);
 
   setTimeout(() => {
-    World.remove(world, new_clip)
-  }, 3000)
-  console.log(//number of bodies in the world
-    world.bodies.length)
-  Body.applyForce(new_clip, { x: new_clip.position.x, y: new_clip.position.y }, { x: Math.random() * 0.01 - 0.005, y: Math.random() * - 0.001 - 0.015 })
-  Body.setAngularVelocity(new_clip, Math.random() * 0.2 - 0.1);
+    Matter.World.remove(world, newClip);
+  }, 3000);
+
+  Matter.Body.applyForce(newClip, { x: newClip.position.x, y: newClip.position.y }, { x: Math.random() * 0.01 - 0.005, y: Math.random() * -0.001 - 0.015 });
+  Matter.Body.setAngularVelocity(newClip, Math.random() * 0.2 - 0.1);
 }
 
+function initializeMatter() {
+  if (!render) {
+    const canvas = document.getElementById('canvas');
 
-// add all of the bodies to the world
+    render = Matter.Render.create({
+      element: document.body,
+      engine: engine,
+      canvas: canvas,
+      options: {
+        background: 'transparent',
+        width: width.value,
+        height: height.value,
+        wireframes: false,
+      },
+    });
+    Matter.Render.run(render);
 
-// Set collision filters for the ground
-// ground.collisionFilter = {
-//   group: 0,
-//   category: GROUND_CATEGORY,
-//   mask: BOX_CATEGORY
-// };
+    runner = Matter.Runner.create();
+    Matter.Runner.run(runner, engine);
 
-// Set collision filters for the boxes
+    resizeListener = () => {
+      render.canvas.width = width.value;
+      render.canvas.height = height.value;
+    };
+    window.addEventListener("resize", resizeListener);
+  }
+}
 
 onMounted(() => {
-  // Create an engine
-
-  var canvas = document.getElementById('canvas')
-  // create a renderer
-
-  var render = Render.create({
-    element: document.body,
-    engine: engine,
-    canvas: canvas,
-    options: {
-      background: 'transparent',
-      width: width.value,
-      height: height.value,
-      // pixelRatio: 'auto',
-      wireframes: false,
-
-    },
-  });
-
-  // run the renderer
-  Render.run(render);
-
-  // create runner
-  var runner = Runner.create();
-
-  window.addEventListener("resize", function () {
-    render.canvas.width = width.value
-    render.canvas.height = height.value
-  });
-
-  // run the engine
-  Runner.run(runner, engine);
+  initializeMatter();
 });
 
-
-
-
-
-// Continuously check for bodies below the screen height
-
-
+onBeforeUnmount(() => {
+  if (render) {
+    Matter.Render.stop(render);
+    Matter.Runner.stop(runner);
+    window.removeEventListener("resize", resizeListener);
+    render.canvas.remove();
+  }
+});
 
 defineExpose({
   addClip,
-  clearWorld
 })
-
-
 </script>
 
-<style></style>
+<style scoped>
+/* Add any styles you need */
+</style>

@@ -31,7 +31,7 @@
             class="w-dvw h-dvh grid grid-rows-[1fr,100px] relative grid-cols-1 bg-neutral-900 flex-col p-4  gap-4 ">
 
             <!-- Main text -->
-            <div :class="[hasTag('bad_guy') ? 'text-red-500  w-full text-xl z-10 absolute break-words bottom-10' : 'text-[#4AF626]']"
+            <div :class="[hasTag('bad_guy') ? 'text-red-500  w-full text-base z-10 absolute break-words bottom-10' : 'text-[#4AF626]']"
                 class="flex items-center justify-center p-8">
                 <div class="flex gap-2 w-[40ch]" :class="[hasTag('bad_guy') ? 'bg-black p-2 rounded-md' : '']">
                     <span>> </span>
@@ -113,7 +113,7 @@
                 <!-- Hardcoded values -->
                 <Paperclip v-if="currentIndex > 17 && currentIndex < 41" ref="paperclip" class="top-0  absolute" />
                 <img v-show="currentIndex > 27 && currentIndex < 40" src="../assets/Clippy9000.png"
-                    class="w-32 h-32 absolute bottom-[180px] animate-[fade-in_.5s_forwards] z-10 " alt="">
+                    class="w-32 select-none h-32 absolute bottom-[180px] animate-[fade-in_.5s_forwards] z-10 " alt="">
                 <button v-if="hasTag('clip_button') && !isTyping" @click="addClip"
                     class=" text-purple-500 hover:ring-2 select-none  ring-purple-500 bg-neutral-800 w-[120px] h-[120px] p-4 rounded-full absolute bottom-20 cursor-pointer z-10">Make
                     Paperclip</button>
@@ -210,6 +210,7 @@ import type_2 from '../assets/type_2.mp3'
 import type_3 from '../assets/type_3.mp3'
 import type_4 from '../assets/type_4.mp3'
 import type_5 from '../assets/type_5.mp3'
+import clip from '../assets/clip.mp3'
 const survey_index = ref(0)
 
 import node_file from '../nodes_1.json'
@@ -233,6 +234,7 @@ const paperclip_count = ref(0)
 const go_to_num = ref(0)
 const sounds = [new Audio(type_1), new Audio(type_2), new Audio(type_3), new Audio(type_4), new Audio(type_5)];
 
+
 function restartGame() {
     currentIndex.value = null
     paperclip_count.value = 0
@@ -247,9 +249,29 @@ function surveyAnswered() {
 function rephrase() {
     currentIndex.value++
 }
+
+const cooldownPeriod = 100; // 1000ms = 1 second
+let lastPlayTime = 0;
+
 function addClip() {
-    paperclip.value.addClip()
-    paperclip_count.value++
+    const now = Date.now();
+
+    // Check if enough time has passed since the last sound was played
+    if (now - lastPlayTime >= cooldownPeriod) {
+        // Play the clip sound
+        if (soundOn.value) {
+            const clip_sound = new Audio(clip);
+            clip_sound.play();
+        }
+
+
+        // Update the lastPlayTime to the current time
+        lastPlayTime = now;
+    }
+
+    // Update paperclip count and add clip
+    paperclip.value.addClip();
+    paperclip_count.value++;
 }
 
 
@@ -320,13 +342,14 @@ function typeText() {
 
     if (charIndex.value < nodes.value[currentIndex.value]?.text?.length) {
         isTyping.value = true
-        setTimeout(typeText, typingSpeed());
         if (soundOn.value) {
             const typingSound = sounds[Math.floor(Math.random() * sounds.length)];
             typingSound.currentTime = 0;
             typingSound.volume = 0.5; // rewind to start to handle fast typing
             typingSound.play();
         }
+        setTimeout(typeText, typingSpeed());
+
 
         typed_text.value += nodes.value[currentIndex.value]?.text[charIndex.value];
         charIndex.value++;
@@ -349,10 +372,7 @@ function runCallback(index) {
 // Type text when entering new node
 watch(currentIndex, async (newIndex, oldIndex) => {
 
-    if (newIndex === 41) {
-        const element = document.getElementById("canvas");
-        element.remove();
-    }
+
     indexCookie.value = newIndex.toString()
     restartType()
     typeText()
@@ -372,7 +392,7 @@ watch(currentIndex, async (newIndex, oldIndex) => {
     if (hasTag('video')) {
 
         nextTick(() => {
-            console.log(oppenheimer.value.volume)
+
             oppenheimer.value.play()
         })
     }
@@ -409,10 +429,10 @@ watch(currentIndex, async (newIndex, oldIndex) => {
 const clip_interval = ref(null)
 
 function botClips() {
-    progressiveInterval(500, 10, () => {
-        addClip()
 
-    }, () => paperclip_count.value > 50000)
+    progressiveInterval(500, 10, () => {
+        addClip();
+    }, () => paperclip_count.value > 50000);
 }
 
 const video = ref(null)
