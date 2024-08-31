@@ -370,10 +370,13 @@ function runCallback(index) {
         }, parseInt(nodes.value[index].callback.delay))
     }
 }
+
+let audioContext;
 // Function calls callback on first node
 function startSound() {
-    if (soundOn.value) {
-        button_sound.value.play();
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        // Create sounds here if needed
     }
 
 }
