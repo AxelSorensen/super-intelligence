@@ -12,15 +12,15 @@
                 <div class="font-mono text-[#4AF626] text-sm">By Axel Sorensen</div>
             </div>
             <div class="flex flex-col gap-4 w-full items-center justify-center">
-                <button @click="page = 'game'; currentIndex = startIndex; restartGame"
+                <button @click="page = 'game'; currentIndex = startIndex; startSound()"
                     class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">{{
                         indexCookie
                             ? 'Restart' : 'Start' }}</button>
                 <button v-if="indexCookie" @click="page = 'game'; currentIndex = indexCookie;"
                     class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">Continue</button>
                 <div v-if="showGoTo" class="flex gap-2 items-center">
-                    <div>Go to</div>
-                    <input v-model="go_to_num" type="text" class="w-12 bg-neutral-500 rounded-sm px-1 outline-none">
+                    <div class="text-purple-500">Go to</div>
+                    <input v-model="go_to_num" type="text" class="w-12 bg-neutral-700 rounded-sm px-1 outline-none">
                     <div @click="page = 'game'; currentIndex = go_to_num;"
                         class="text-purple-500 rounded-sm cursor-pointer">->
                     </div>
@@ -112,7 +112,7 @@
             <div class="absolute w-dvw h-dvh flex justify-center">
                 <!-- Hardcoded values -->
                 <Paperclip v-if="currentIndex > 17 && currentIndex < 41" ref="paperclip" class="top-0  absolute" />
-                <img v-show="currentIndex > 27 && currentIndex < 40" src="../assets/Clippy9000.png"
+                <img v-show="currentIndex > 26 && currentIndex < 40" src="../assets/Clippy9000.png"
                     class="w-32 select-none h-32 absolute bottom-[180px] animate-[fade-in_.5s_forwards] z-10 " alt="">
                 <button v-if="hasTag('clip_button') && !isTyping" @click="addClip"
                     class=" text-purple-500 hover:ring-2 select-none  ring-purple-500 bg-neutral-800 w-[120px] h-[120px] p-4 rounded-full absolute bottom-20 cursor-pointer z-10">Make
@@ -211,6 +211,7 @@ import type_3 from '../assets/type_3.mp3'
 import type_4 from '../assets/type_4.mp3'
 import type_5 from '../assets/type_5.mp3'
 import clip from '../assets/clip.mp3'
+import button from '../assets/button.mp3'
 import { useSound } from '@vueuse/sound'
 const survey_index = ref(0)
 
@@ -234,11 +235,14 @@ const page = ref('home')
 const paperclip_count = ref(0)
 const go_to_num = ref(0)
 const sounds = [useSound(type_1), useSound(type_2), useSound(type_3), useSound(type_4), useSound(type_5)];
-
+const clip_sound = useSound(clip);
+const button_sound = ref(useSound(button, { volume: 0.0 }));
+const soundOn = ref(true)
 
 function restartGame() {
     currentIndex.value = null
     paperclip_count.value = 0
+
 
 }
 
@@ -261,7 +265,6 @@ function addClip() {
     if (now - lastPlayTime >= cooldownPeriod) {
         // Play the clip sound
         if (soundOn.value) {
-            const clip_sound = useSound(clip);
             clip_sound.play();
         }
 
@@ -317,7 +320,7 @@ function progressiveInterval(initialTime, decreaseFactor, callbackFunction, stop
 }
 
 
-const soundOn = ref(true)
+
 
 
 const startIndex = ref(0)
@@ -368,7 +371,12 @@ function runCallback(index) {
     }
 }
 // Function calls callback on first node
+function startSound() {
+    if (soundOn.value) {
+        button_sound.value.play();
+    }
 
+}
 
 // Type text when entering new node
 watch(currentIndex, async (newIndex, oldIndex) => {
@@ -504,12 +512,12 @@ watch(isTyping, (newValue) => {
 });
 
 
-onMounted(() => {
-    window.addEventListener("beforeunload", function (e) {
-        e.preventDefault();
-        e.returnValue = "";
-        indexCookie.value = currentIndex.value
-    });
-})
+// onMounted(() => {
+//     window.addEventListener("beforeunload", function (e) {
+//         e.preventDefault();
+//         e.returnValue = "";
+//         indexCookie.value = currentIndex.value
+//     });
+// })
 
 </script>
