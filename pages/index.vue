@@ -22,7 +22,7 @@
                             ? 'Restart' : 'Start' }}</button>
                 <button v-if="indexCookie" @click="page = 'game'; currentIndex = indexCookie;"
                     class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">Continue</button>
-                <button v-if="indexCookie" @click="page = 'end';"
+                <button @click="page = 'end';"
                     class="p-4 z-10 cursor-pointer max-w-[200px] flex items-center justify-center w-full text-center text-purple-500 ring-2 hover:bg-purple-500 hover:bg-opacity-15 ring-purple-500 ring-opacity-20 rounded-md">Resources
                     and Survey</button>
                 <div v-if="showGoTo" class="flex gap-2 items-center">
@@ -244,7 +244,7 @@
 
         </div>
         <div class="flex flex-col mt-40 p-4 w-full justify-center">
-            <div class="text-neutral-300 text-center pb-8">*All responses are anonomous</div>
+            <div class="text-neutral-300 text-center pb-8">*All responses are anonymous</div>
             <div class="flex justify-center">
                 <Survey v-show="take_survey_index < 6" @answered="takeSurveyAnswered" :survey="survey"
                     :survey_index="take_survey_index" />
