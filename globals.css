@@ -69,6 +69,17 @@ body {
     }
 }
 
+@supports not (height: 100dvh) {
+    .w-dvw {
+        width: 100vw;
+    }
+
+    .h-dvh {
+        height: 100vh;
+    }
+}
+
+
 
 @keyframes blink-caret {
 
