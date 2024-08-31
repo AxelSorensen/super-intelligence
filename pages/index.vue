@@ -1,4 +1,7 @@
 <template>
+    <audio ref="audio" class="hidden" preload="auto">
+        <source src="../assets/button.mp3" type="audio/mpeg">
+    </audio>
     <div @click="showGoTo = !showGoTo" class="absolute top-0 w-8 h-8 right-0 cursor-pointer"></div>
     <div class="bg-neutral-900 overflow-hidden">
 
@@ -221,6 +224,7 @@ const nodes = ref(node_file)
 const survey = ref(survey_file)
 const oppenheimer = ref(null)
 const bomb = ref(null)
+const audio = ref(null)
 
 import SoundOn from '~icons/heroicons/speaker-wave-16-solid'
 import SoundOff from '~icons/heroicons/speaker-x-mark-16-solid'
@@ -236,7 +240,6 @@ const paperclip_count = ref(0)
 const go_to_num = ref(0)
 const sounds = [useSound(type_1, { volume: 0.5 }), useSound(type_2, { volume: 0.5 }), useSound(type_3, { volume: 0.5 }), useSound(type_4, { volume: 0.5 }), useSound(type_5, { volume: 0.5 })];
 const clip_sound = useSound(clip);
-const button_sound = new Audio(button);
 const soundOn = ref(true)
 
 function restartGame() {
@@ -249,6 +252,10 @@ function restartGame() {
 function surveyAnswered() {
     currentIndex.value++
 
+}
+
+function startSound() {
+    audio.value.play()
 }
 
 function rephrase() {
@@ -371,15 +378,7 @@ function runCallback(index) {
     }
 }
 
-let audioContext;
 // Function calls callback on first node
-function startSound() {
-    if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        // Create sounds here if needed
-    }
-
-}
 
 // Type text when entering new node
 watch(currentIndex, async (newIndex, oldIndex) => {
