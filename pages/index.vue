@@ -236,7 +236,7 @@ const paperclip_count = ref(0)
 const go_to_num = ref(0)
 const sounds = [useSound(type_1, { volume: 0.5 }), useSound(type_2, { volume: 0.5 }), useSound(type_3, { volume: 0.5 }), useSound(type_4, { volume: 0.5 }), useSound(type_5, { volume: 0.5 })];
 const clip_sound = useSound(clip);
-const button_sound = ref(useSound(button, { volume: 0.0 }));
+const button_sound = new Audio(button);
 const soundOn = ref(true)
 
 function restartGame() {
