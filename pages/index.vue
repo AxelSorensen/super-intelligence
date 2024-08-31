@@ -27,8 +27,8 @@
                 </div>
             </div>
         </div>
-        <div v-if="page == 'game'"
-            class="w-dvw grid h-screen grid-rows-[1fr,100px] relative grid-cols-1 bg-neutral-900 flex-col p-4  gap-4 ">
+        <div v-if="page == 'game'" :class="[isSafari ? 'h-screen w-screen' : 'h-dvh w-dvw']"
+            class=" grid grid-rows-[1fr,100px] relative grid-cols-1 bg-neutral-900 flex-col p-4  gap-4 ">
 
             <!-- Main text -->
             <div :class="[hasTag('bad_guy') ? 'text-red-500  w-full text-base z-10 absolute break-words bottom-10' : 'text-[#4AF626]']"
