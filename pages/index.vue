@@ -196,13 +196,13 @@
 
                     <a href="https://www.youtube.com/watch?v=3Om9ssTm194" target="_blank"
                         class="bg-[#4AF626] hover:bg-[#2b8a18] w-full truncate cursor-pointer max-w-[600px] hover:text-white text-center text-black p-2 rounded-sm">Myths
-                        and Facts About Superintelligent AI</a>
+                        and Facts About Superintelligent AI (video)</a>
                     <a href="https://www.safe.ai/ai-risk" target="_blank"
                         class="bg-[#4AF626] hover:bg-[#2b8a18] w-full truncate cursor-pointer max-w-[600px] hover:text-white text-center text-black p-2 rounded-sm">An
-                        Overview of Catastrophic AI Risks</a>
+                        Overview of Catastrophic AI Risks (article)</a>
                     <a href="https://aiimpacts.org/counterarguments-to-the-basic-ai-x-risk-case/" target="_blank"
                         class="bg-[#4AF626] truncate hover:bg-[#2b8a18] cursor-pointer max-w-[600px] hover:text-white w-full  text-center text-black p-2 rounded-sm">An
-                        Counterarguments to the basic AI x-risk case</a>
+                        Counterarguments to the basic AI x-risk case (article)</a>
 
                 </div>
                 <div class="flex flex-col w-full max-w-[600px] gap-4">
