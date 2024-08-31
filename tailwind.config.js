@@ -10,9 +10,14 @@ export default {
   ],
   theme: {
     extend: {
-
+      screens: {
+        'short': { 'raw': '(max-height: 640px)' },
+        // => @media (min-height: 800px) { ... }
+      }
     },
+
   },
+
   plugins: [],
 }
 

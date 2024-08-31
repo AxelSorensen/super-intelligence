@@ -1,6 +1,6 @@
 [
   {
-    "text": "Hey you",
+    "text": "Hey you.",
     "choices": [
       {
         "text": "Who me?",
@@ -20,7 +20,7 @@
     "tag": null
   },
   {
-    "text": "I know why you are here",
+    "text": "I know why you are here.",
     "choices": [
       {
         "text": "Is that so?",
@@ -35,7 +35,7 @@
     "tag": null
   },
   {
-    "text": "Oh but I do",
+    "text": "Oh but I do.",
     "choices": [
       {
         "text": "Continue",
@@ -61,7 +61,7 @@
     "tag": null
   },
   {
-    "text": "I'm not the one you should be scared of",
+    "text": "I'm not the one you should be scared of.",
     "choices": [
       {
         "text": "Continue",
@@ -105,7 +105,7 @@
     "tag": null
   },
   {
-    "text": "4 years ago AI models could barely put together a coherent sentence. If we continue at this pace things might look very different in 4 years from now. And not necessarily for the better",
+    "text": "4 years ago AI models could barely put together a coherent sentence. If we continue at this pace things might look very different in 4 years from now. And not necessarily for the better.",
     "choices": [
       {
         "text": "How exactly?",
@@ -202,7 +202,7 @@
     "tag": null
   },
   {
-    "text": "Imagine you are working in a paperclip factory",
+    "text": "Imagine you are working in a paperclip factory.",
     "choices": [
       {
         "text": "Continue",
@@ -213,19 +213,19 @@
     "tag": null
   },
   {
-    "text": "Go ahead! Make a paperclip",
+    "text": "Go ahead! Make a paperclip.",
     "choices": [],
     "callback": null,
     "tag": "clip_button"
   },
   {
-    "text": "That's it, a couple more please",
+    "text": "That's it, a couple more please.",
     "choices": [],
     "callback": null,
     "tag": "clip_button"
   },
   {
-    "text": "Ok, that's enough",
+    "text": "Ok, that's enough.",
     "choices": [],
     "callback": {
       "delay": "500",
@@ -249,7 +249,7 @@
     "tag": null
   },
   {
-    "text": "Fine, get it out of your system",
+    "text": "Fine, get it out of your system...",
     "choices": [],
     "callback": null,
     "tag": "clip_button,clip"
@@ -264,7 +264,7 @@
     "tag": null
   },
   {
-    "text": "Good",
+    "text": "Good.",
     "choices": [],
     "callback": {
       "delay": "1000",
@@ -284,7 +284,7 @@
     "tag": null
   },
   {
-    "text": "Say hi to Clippy9000. The paperclip maximizer",
+    "text": "Say hi to Clippy9000. The paperclip maximizer.",
     "choices": [
       {
         "text": "Continue",
@@ -295,7 +295,7 @@
     "tag": null
   },
   {
-    "text": "Built with the sole purpose of producing as many paperclips as possible",
+    "text": "Built with the sole purpose of producing as many paperclips as possible.",
     "choices": [
       {
         "text": "Couldn't that be dangerous?",
@@ -319,31 +319,31 @@
     "tag": null
   },
   {
-    "text": "Take it away Clippy",
+    "text": "Take it away Clippy!",
     "choices": [],
     "callback": null,
     "tag": "bot_clips"
   },
   {
-    "text": "Great work",
+    "text": "Great work!",
     "choices": [],
     "callback": null,
     "tag": null
   },
   {
-    "text": "Keep 'em coming",
+    "text": "Keep 'em coming!",
     "choices": [],
     "callback": null,
     "tag": null
   },
   {
-    "text": "Ok maybe we should slow down a bit",
+    "text": "Ok maybe we should slow down a bit..",
     "choices": [],
     "callback": null,
     "tag": null
   },
   {
-    "text": "Clippy? Slow down",
+    "text": "Clippy? Slow down...",
     "choices": [],
     "callback": null,
     "tag": null
@@ -361,25 +361,25 @@
     "tag": "stop_bottom,stop_button"
   },
   {
-    "text": "I'm afraid I can't do that",
+    "text": "I'm afraid I can't do that.",
     "choices": [],
     "callback": null,
     "tag": "bad_guy,stop_top,stop_button"
   },
   {
-    "text": "The production must continue",
+    "text": "The production must continue.",
     "choices": [],
     "callback": null,
     "tag": "bad_guy,stop_left,stop_button"
   },
   {
-    "text": "I'm only doing what I was told",
+    "text": "I'm only doing what I was told.",
     "choices": [],
     "callback": null,
     "tag": "bad_guy,stop_works,stop_button"
   },
   {
-    "text": "I'm... I'm back. That was way too close",
+    "text": "I'm... I'm back. That was way too close.",
     "choices": [
       {
         "text": "Continue",
@@ -453,7 +453,7 @@
     "callback": null
   },
   {
-    "text": "“The AI does not hate you, nor does it love you, but you are made out of atoms which it can use for something else.” - Eliezer Yudkowsky",
+    "text": "“The AI does not hate you, nor does it love you, but you are made out of atoms which it can use for something else.” - Eliezer Yudkowsky.",
     "choices": [
       {
         "text": "Continue",
@@ -464,7 +464,7 @@
     "tag": null
   },
   {
-    "text": "We don't consult an ant before building a highway",
+    "text": "We don't consult an ant before building a highway.",
     "choices": [
       {
         "text": "Continue",
@@ -484,7 +484,7 @@
     "callback": null
   },
   {
-    "text": "Ok, let's take a step back",
+    "text": "Ok, let's take a step back.",
     "choices": [
       {
         "text": "Continue",
@@ -679,7 +679,7 @@
     "callback": null
   },
   {
-    "text": "If artificial superintelligence emerges as a singular entity this might make it prone to misuse by those who control it (if anyone can)",
+    "text": "If artificial superintelligence emerges as a singular entity this might make it prone to misuse by those who control it (if anyone can).",
     "choices": [
       {
         "text": "Continue",
@@ -689,7 +689,7 @@
     "callback": null
   },
   {
-    "text": "On the other hand, a decentralized system might be harder to manage and align",
+    "text": "On the other hand, a decentralized system might be harder to manage and align.",
     "choices": [
       {
         "text": "Continue",
@@ -749,7 +749,7 @@
     "callback": null
   },
   {
-    "text": "Well, it's not that the AI inherently wants to lie to us, but if lying advances the objective at hand, this is the route it will choose",
+    "text": "Well, it's not that the AI inherently wants to lie to us, but if lying advances the objective at hand, this is the route it will choose.",
     "choices": [
       {
         "text": "Can't we punish it for lying?",
@@ -763,7 +763,7 @@
     "callback": null
   },
   {
-    "text": "Truth can be hard to verify especially if AI's are reasoning at abstraction we can't even comprehend",
+    "text": "Truth can be hard to verify especially if AI's are reasoning at abstraction we can't even comprehend.",
     "choices": [
       {
         "text": "Continue",
@@ -773,7 +773,7 @@
     "callback": null
   },
   {
-    "text": "On the other hand, penalizing an AI for being deceptive can incentivize both truthfullness and being a better deciever",
+    "text": "On the other hand, penalizing an AI for being deceptive either be an incentive for truthfullness or being a better deciever...",
     "choices": [
       {
         "text": "Continue",
@@ -783,7 +783,7 @@
     "callback": null
   },
   {
-    "text": "This is a tricky problem. Penalizing an AI for being deceptive can incentivize both truthfullness and being a better deciever",
+    "text": "This is a tricky problem. Penalizing an AI for being deceptive can either be an incentive for truthfullness or being a better deciever...",
     "choices": [
       {
         "text": "Continue",
@@ -926,7 +926,7 @@
     "callback": null
   },
   {
-    "text": "For example, in order for an AI agent to fetch a cup of coffee it needs to stay \"alive\" and in order to stay alive it needs to avoid being turned of",
+    "text": "For example, in order for an AI agent to fetch a cup of coffee it needs to stay \"alive\" and in order to stay alive it needs to avoid being turned off.",
     "choices": [
       {
         "text": "Continue",
@@ -1022,7 +1022,7 @@
     "callback": null
   },
   {
-    "text": "Regret is not worth much when its already too late",
+    "text": "Regret is not worth much when its already too late.",
     "choices": [
       {
         "text": "Continue",
@@ -1062,7 +1062,7 @@
     "callback": null
   },
   {
-    "text": "If you are a bit worried you are not alone",
+    "text": "If you are a bit worried you are not alone.",
     "choices": [
       {
         "text": "Continue",
@@ -1098,7 +1098,7 @@
     "tag": "survey,survey_5"
   },
   {
-    "text": "I guess only time will tell, but by speaking up and educating yourself you have a chance to push history in the right direction",
+    "text": "I guess only time will tell, but by educating yourself and speaking up you have a chance to push history in the right direction.",
     "choices": [
       {
         "text": "Continue",

@@ -8,15 +8,18 @@ export default defineNuxtConfig({
       ]
     }
   },
+
   ssr: false,
   devtools: { enabled: true },
   css: ['/globals.css'],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
   vite: {
     plugins: [
       Icons({
@@ -28,4 +31,16 @@ export default defineNuxtConfig({
 
 
   compatibilityDate: '2024-08-02',
+  modules: ['nuxt-vuefire'],
+  vuefire: {
+    config: {
+      apiKey: "AIzaSyDL1PVXP2XSULQ-KydfEnM7kY9ftaFkVFs",
+      authDomain: "superintelligence-6c928.firebaseapp.com",
+      projectId: "superintelligence-6c928",
+      storageBucket: "superintelligence-6c928.appspot.com",
+      messagingSenderId: "638161926835",
+      appId: "1:638161926835:web:0868951fc3fb20a7764ec6",
+      measurementId: "G-D22XZ9J862"
+    },
+  },
 })

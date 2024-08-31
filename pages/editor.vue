@@ -1,6 +1,6 @@
 <template>
 
-    <div v-if="!play" class="w-dvw z-[20] h-dvh grid grid-rows-[auto,1fr,1fr] relative">
+    <div v-if="!play" class="w-dvw z-[20] h-dvh grid grid-rows-[auto,1fr,1fr] relative overflow-scroll">
         <div class="divide-y gap-2 divide-neutral-800">
             <div @click="play = !play; currentIndex = startIndex;"
                 class="bg-neutral-900 text-white  top-0 flex items-center justify-center p-2 text-center hover:bg-neutral-800 cursor-pointer">

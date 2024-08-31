@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-dvw h-dvh overflow-hidden">
-    <canvas id="canvas" class="absolute top-0 pointer-events-none"></canvas>
+    <canvas id="canvas" :class="[currentIndex < 19 ? 'hidden' : 'absolute']" class="top-0 pointer-events-none"></canvas>
   </div>
 </template>
 
@@ -11,6 +11,11 @@ import "pathseg";
 import decomp from "poly-decomp";
 import clone from 'clone';
 import { useWindowSize } from '@vueuse/core';
+defineProps({
+  currentIndex: Number,
+});
+
+
 
 const { width, height } = useWindowSize();
 const engine = Matter.Engine.create();
@@ -23,6 +28,8 @@ let resizeListener;
 const paths = [
   // Your SVG paths here
 ];
+
+
 
 const vertexSets = paths.map((path) => {
   const newElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
