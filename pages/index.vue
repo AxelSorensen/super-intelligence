@@ -1,7 +1,7 @@
 <template>
     <!-- Audio source for triggering audio in safari -->
     <audio ref="audio" preload="auto">
-        <source src="../assets/button.mp3" type="audio/mpeg">
+        <source src="../assets/silence.mp3" type="audio/mpeg">
     </audio>
     <div @click="showGoTo = !showGoTo" class="absolute top-0 w-8 h-8 right-0 cursor-pointer"></div>
     <div class="bg-neutral-900 overflow-hidden">
@@ -20,7 +20,7 @@
                     class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">{{
                         indexCookie
                             ? 'Restart' : 'Start' }}</button>
-                <button v-if="indexCookie" @click="page = 'game'; currentIndex = indexCookie;"
+                <button v-if="indexCookie" @click="page = 'game'; startSound(); currentIndex = indexCookie;"
                     class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">Continue</button>
                 <button @click="page = 'end';"
                     class="p-4 z-10 cursor-pointer max-w-[200px] flex items-center justify-center w-full text-center text-purple-500 ring-2 hover:bg-purple-500 hover:bg-opacity-15 ring-purple-500 ring-opacity-20 rounded-md">Resources
@@ -346,7 +346,7 @@ function takeSurveyAnswered() {
 }
 
 function startSound() {
-    audio.value.volume = 0.001
+
     audio.value.play()
 }
 
