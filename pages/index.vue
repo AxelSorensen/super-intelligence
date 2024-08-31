@@ -1,6 +1,6 @@
 <template>
     <!-- Audio source for triggering audio in safari -->
-    <audio ref="audio">
+    <audio ref="audio" preload="auto">
         <source src="../assets/button.mp3" type="audio/mpeg">
     </audio>
     <div @click="showGoTo = !showGoTo" class="absolute top-0 w-8 h-8 right-0 cursor-pointer"></div>
@@ -346,7 +346,7 @@ function takeSurveyAnswered() {
 }
 
 function startSound() {
-    audio.value.volume = 0.0
+    audio.value.volume = 0.001
     audio.value.play()
 }
 
@@ -612,8 +612,12 @@ watch(isTyping, (newValue) => {
 });
 
 
-onMounted(() => {
-    startSound()
-})
+// onMounted(() => {
+//     window.addEventListener("beforeunload", function (e) {
+//         e.preventDefault();
+//         e.returnValue = "";
+//         indexCookie.value = currentIndex.value
+//     });
+// })
 
 </script>
