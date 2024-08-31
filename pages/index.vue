@@ -227,7 +227,7 @@ const oppenheimer = ref(null)
 const bomb = ref(null)
 
 function isSafari() {
-    return /^((?!chrome|android|mobile).)*safari/i.test(navigator.userAgent);
+    return /^((?!chrome|android|mobile|tablet|ipad|playbook).)*safari/i.test(navigator.userAgent);
 }
 
 import SoundOn from '~icons/heroicons/speaker-wave-16-solid'
