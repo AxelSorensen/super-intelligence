@@ -1,9 +1,9 @@
 <template>
     <div @click="showGoTo = !showGoTo" class="absolute top-0 w-8 h-8 right-0 cursor-pointer"></div>
-    <div class="bg-neutral-900 overflow-hidden">
+    <div class="bg-neutral-900 overflow-hidden ">
 
-        <div v-if="page == 'home'"
-            class="w-dvw h-dvh flex justify-center items-center bg-neutral-900 flex-col p-4  gap-16 text-white">
+        <div v-if="page == 'home'" :class="[isSafari ? 'h-screen w-screen' : 'h-dvh w-dvw']"
+            class="flex justify-center items-center bg-neutral-900 flex-col p-4  gap-16 text-white">
             <div class="flex flex-col gap-4">
                 <div class="font-mono text-[#4AF626] text-2xl">Superintelligence? <span
                         :class="[hasTag('bad_guy') ? 'border-red-500 z-10' : 'border-[#4AF626]']"
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div v-if="page == 'game'"
-            class="w-dvw h-dvh grid grid-rows-[1fr,100px] relative grid-cols-1 bg-neutral-900 flex-col p-4  gap-4 ">
+            class="w-dvw grid h-screen grid-rows-[1fr,100px] relative grid-cols-1 bg-neutral-900 flex-col p-4  gap-4 ">
 
             <!-- Main text -->
             <div :class="[hasTag('bad_guy') ? 'text-red-500  w-full text-base z-10 absolute break-words bottom-10' : 'text-[#4AF626]']"
@@ -84,7 +84,8 @@
                     :question="survey[survey_index].question" :answers="survey[survey_index].answers" />
             </div>
             <!-- Extra buttons -->
-            <div class="absolute  flex p-10 text-center justify-center items-center w-dvw h-dvh">
+            <div :class="[isSafari ? 'h-screen w-screen' : 'h-dvh w-dvw']"
+                class="absolute  flex p-10 text-center justify-center items-center">
 
                 <div v-show="hasTag('pro_climate') && !isTyping" class=" text-[#4AF626] mt-20 text-1xl font-mono">
                     Historic Green
@@ -109,7 +110,7 @@
             </div>
 
             <!-- Paper clip -->
-            <div class="absolute w-dvw h-dvh flex justify-center">
+            <div :class="[isSafari ? 'h-screen w-screen' : 'h-dvh w-dvw']" class="absolute flex justify-center">
                 <!-- Hardcoded values -->
                 <Paperclip v-if="currentIndex > 17 && currentIndex < 41" ref="paperclip" class="top-0  absolute" />
                 <img v-show="currentIndex > 26 && currentIndex < 40" src="../assets/Clippy9000.png"
@@ -121,7 +122,8 @@
                     :class="{ 'bottom-20': hasTag('stop_bottom'), 'top-20': hasTag('stop_top'), 'top-[100px] left-6': hasTag('stop_left'), 'bottom-[320px]': hasTag('stop_works') }"
                     class=" text-white hover:bg-red-600  select-none bg-red-700 w-auto absolute cursor-pointer p-4 z-10">EMERGENCY
                     STOP</button>
-                <div class="bg-black absolute w-dvw h-dvh animate-[fade_4s_forwards]"
+                <div :class="[isSafari ? 'h-screen w-screen' : 'h-dvh w-dvw']"
+                    class="bg-black absolute animate-[fade_4s_forwards]"
                     v-if="(currentIndex == 106 || currentIndex == 107) && !isTyping">
                 </div>
                 <video playsinline webkit-playsinline ref="bomb" v-show="hasTag('bomb')" @ended="currentIndex++">
@@ -131,7 +133,8 @@
                 </video>
 
                 <!-- Video -->
-                <div class="w-dvw max-w-[600px] flex-col h-dvh rounded-md overflow-hidden items-center flex justify-center p-8"
+                <div :class="[isSafari ? 'h-screen w-screen' : 'h-dvh w-dvw']"
+                    class=" max-w-[600px] flex-col rounded-md overflow-hidden items-center flex justify-center p-8"
                     v-show="hasTag('video')">
 
                     <div class="overflow-hidden">
@@ -164,7 +167,8 @@
             </div>
         </div>
         <div v-if="page == 'end'" class="z-[20]">
-            <div class="w-dvw h-dvh flex justify-center items-center bg-neutral-900 flex-col p-4  gap-8 text-white">
+            <div :class="[isSafari ? 'h-screen w-screen' : 'h-dvh w-dvw']"
+                class=" flex justify-center items-center bg-neutral-900 flex-col p-4  gap-8 text-white">
                 <div class="font-mono text-[#4AF626] text-2xl">The End</div>
                 <div class="flex flex-col gap-4 w-full items-center">
                     <div class="font-mono text-[#4AF626] text-sm">Pause powerful AI training</div>
@@ -222,6 +226,10 @@ const survey = ref(survey_file)
 const oppenheimer = ref(null)
 const bomb = ref(null)
 
+function isSafari() {
+    return /^((?!chrome|android|mobile).)*safari/i.test(navigator.userAgent);
+}
+
 import SoundOn from '~icons/heroicons/speaker-wave-16-solid'
 import SoundOff from '~icons/heroicons/speaker-x-mark-16-solid'
 import Home from '~icons/heroicons/home-16-solid'
@@ -234,7 +242,7 @@ const showGoTo = ref(false)
 const page = ref('home')
 const paperclip_count = ref(0)
 const go_to_num = ref(0)
-const sounds = [useSound(type_1), useSound(type_2), useSound(type_3), useSound(type_4), useSound(type_5)];
+const sounds = [useSound(type_1, { volume: 0.5 }), useSound(type_2, { volume: 0.5 }), useSound(type_3, { volume: 0.5 }), useSound(type_4, { volume: 0.5 }), useSound(type_5, { volume: 0.5 })];
 const clip_sound = useSound(clip);
 const button_sound = ref(useSound(button, { volume: 0.0 }));
 const soundOn = ref(true)
@@ -512,12 +520,12 @@ watch(isTyping, (newValue) => {
 });
 
 
-// onMounted(() => {
-//     window.addEventListener("beforeunload", function (e) {
-//         e.preventDefault();
-//         e.returnValue = "";
-//         indexCookie.value = currentIndex.value
-//     });
-// })
+onMounted(() => {
+    // window.addEventListener("beforeunload", function (e) {
+    //     e.preventDefault();
+    //     e.returnValue = "";
+    //     indexCookie.value = currentIndex.value
+    // });
+})
 
 </script>

@@ -7,9 +7,11 @@ button {
     touch-action: manipulation;
 }
 
+
 body {
-    @apply overflow-hidden bg-neutral-900
+    @apply bg-neutral-900 overflow-hidden
 }
+
 
 .allow-select {
     user-select: text !important;
