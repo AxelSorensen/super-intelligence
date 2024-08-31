@@ -61,7 +61,7 @@
                 <div class="absolute  z-10 top-0 p-4 gap-8 flex w-screen items-center">
                     <div class="cursor-pointer flex hover:text-neutral-400 text-neutral-500"
                         @click="page = 'home'; restartGame()">
-                        <Home class="text-xl" />
+                        <Home class="text-2xl" />
                     </div>
                     <!-- <div class="cursor-pointer  text-neutral-500 hover:text-neutral-400"
                                 @click="restartGame(); currentIndex = 0; restartType()">
@@ -78,9 +78,9 @@
                     </div>
 
                     <SoundOn @click="soundOn = !soundOn" v-if="soundOn"
-                        class="cursor-pointer text-neutral-500 text-xl hover:text-neutral-400" />
+                        class="cursor-pointer text-neutral-500 text-2xl hover:text-neutral-400" />
                     <SoundOff @click="soundOn = !soundOn" v-else
-                        class="cursor-pointer text-neutral-500 text-xl hover:text-neutral-400" />
+                        class="cursor-pointer text-neutral-500 text-2xl hover:text-neutral-400" />
                 </div>
 
 
@@ -175,7 +175,7 @@
             <div class="absolute  z-10 top-0 p-4 gap-8 flex w-screen items-center">
                 <div class="cursor-pointer flex hover:text-neutral-400 text-neutral-500"
                     @click="page = 'home'; restartGame()">
-                    <Home class="text-xl" />
+                    <Home class="text-2xl" />
                 </div>
 
 
