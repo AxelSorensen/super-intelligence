@@ -20,8 +20,8 @@
                     class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">{{
                         indexCookie
                             ? 'Restart' : 'Start' }}</button>
-                <button v-if="indexCookie" @click="page = 'game'; startSound(); currentIndex = indexCookie;"
-                    class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">Continue</button>
+                <button v-if="indexCookie" @click="resumeGame"
+                    class="p-4 z-10 cursor-pointer max-w-[200px] bg-neutral-800 flex items-center justify-center w-full text-center text-purple-500 hover:ring-2 ring-purple-500 rounded-md">Resume</button>
                 <button @click="page = 'end';"
                     class="p-4 z-10 cursor-pointer max-w-[200px] flex items-center justify-center w-full text-center text-purple-500 ring-2 hover:bg-purple-500 hover:bg-opacity-15 ring-purple-500 ring-opacity-20 rounded-md">Resources
                     and Survey</button>
@@ -223,6 +223,7 @@
                     <a href="https://www.linkedin.com/in/axel-sorensen/" target="_blank"
                         class="hover:text-purple-500 short:hidden text-gray-500  allow-select">www.linkedin.com/in/axel-sorensen/</a>
                 </div>
+
             </div>
         </div>
 
@@ -328,9 +329,29 @@ const clip_sound = useSound(clip, { volume: 0.5 });
 const error_sound = useSound(error, { volume: 1 });
 const soundOn = ref(true)
 
+function resumeGame() {
+    page.value = 'game';
+    startSound();
+    if (indexCookie.value > 18 && indexCookie.value < 26) {
+        currentIndex.value = 18
+
+    } else if (indexCookie.value > 28 && indexCookie.value < 40) {
+        currentIndex.value = 28
+
+    } else if (indexCookie.value > 105 && indexCookie.value < 109) {
+        currentIndex.value = 105
+
+    } else {
+        currentIndex.value = indexCookie.value
+    }
+
+
+}
+
 function restartGame() {
     currentIndex.value = null
     paperclip_count.value = 0
+    clearAllTypeTimeouts()
 }
 
 function surveyAnswered() {
@@ -373,7 +394,7 @@ function addClip() {
     }
 
     // Update paperclip count and add clip
-    paperclip.value.addClip();
+    paperclip.value?.addClip();
     paperclip_count.value++;
 }
 
@@ -436,6 +457,7 @@ const charIndex = ref(0)
 
 
 function restartType() {
+    isTyping.value = false
     charIndex.value = 0
     typed_text.value = ''
     setTimeout(() => typeText(), typingSpeed())
@@ -443,6 +465,16 @@ function restartType() {
 
 function typingSpeed() {
     return 80
+}
+
+let typeTimeouts = []
+
+function clearAllTypeTimeouts() {
+    // Loop through the array of timeout IDs and clear each one
+    typeTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+
+    // Reset the array
+    typeTimeouts = [];
 }
 
 function typeText() {
@@ -456,7 +488,6 @@ function typeText() {
             typingSound.play();
         }
         setTimeout(typeText, typingSpeed());
-
 
         typed_text.value += nodes.value[currentIndex.value]?.text[charIndex.value];
         charIndex.value++;
@@ -478,12 +509,20 @@ function runCallback(index) {
 
 // Type text when entering new node
 watch(currentIndex, async (newIndex, oldIndex) => {
+    console.log(newIndex, oldIndex)
+    isTyping.value = false
     if (newIndex == 18) {
-        paperclip.value.addClip();
+        paperclip.value?.addClip();
     }
 
-    indexCookie.value = newIndex.toString()
-    restartType()
+    if (newIndex != null) {
+        indexCookie.value = newIndex.toString()
+    }
+
+    if (!isTyping.value) {
+        restartType()
+    }
+
     typeText()
     if (hasTag('bot_clips')) {
         paperclip_count.value = 0
@@ -541,7 +580,7 @@ function botClips() {
 
     progressiveInterval(500, 10, () => {
         addClip();
-    }, () => paperclip_count.value > 50000);
+    }, () => paperclip_count.value > 50000 || currentIndex.value == null);
 }
 
 const video = ref(null)
@@ -600,7 +639,7 @@ watch(paperclip_count, async (newCount, oldIndex) => {
 })
 
 function hasCallback() {
-    return nodes.value[currentIndex.value].callback
+    return nodes.value[currentIndex.value]?.callback
 }
 
 // Run callback after text has been typed

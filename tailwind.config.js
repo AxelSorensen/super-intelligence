@@ -11,7 +11,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        'short': { 'raw': '(max-height: 640px)' },
+        'short': { 'raw': '(max-height: 670px)' },
         // => @media (min-height: 800px) { ... }
       }
     },
