@@ -2,6 +2,8 @@
 
 A choose-your-own-adventure text game about AI safety, built as a branching story with a survey attached.
 
+![Superintelligence screenshot](docs/screenshot.png)
+
 ## Features
 
 - 💬 **Branching narrative** — story nodes and choices driven by a `nodes.json` graph, walked one node at a time
