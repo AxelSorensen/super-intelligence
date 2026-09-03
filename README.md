@@ -1,75 +1,38 @@
-# Nuxt 3 Minimal Starter
+# 🤖 Superintelligence
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A choose-your-own-adventure text game about AI safety, built as a branching story with a survey attached.
 
-## Setup
+## Features
 
-Make sure to install the dependencies:
+- 💬 **Branching narrative** — story nodes and choices driven by a `nodes.json` graph, walked one node at a time
+- 🖊️ **Terminal-style typing effect** — text types itself out character by character in a monospace, green-on-black terminal look
+- 💾 **Resume support** — progress is checkpointed via cookies so a player can leave and resume where they stopped
+- 📝 **Built-in survey** — an end-of-game survey (`Survey.vue`) with results view (`SurveyResults.vue`)
+- ✏️ **Node editor** — a separate `/editor` page for building/editing the story graph without hand-writing JSON
+
+## Installation
 
 ```bash
-# npm
+git clone <this repo>
+cd super-intelligence
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Usage
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Then open the local Nuxt dev server URL printed in the terminal. `/` is the game, `/editor` is the story-graph editor.
 
-Build the application for production:
+## Built with
 
-```bash
-# npm
-npm run build
+- [Nuxt 3](https://nuxt.com/) / Vue 3
+- Tailwind CSS
+- Firebase (`nuxt-vuefire`)
+- Matter.js (physics, via `matter-js`/`poly-decomp`)
 
-# pnpm
-pnpm run build
+## Status
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+🚧 Personal/experimental project — the story data lives in checked-in JSON files (including stray copies like `nodes_1 copy.json`), suggesting the editor and content are still being iterated on rather than finalized.
