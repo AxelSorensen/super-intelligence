@@ -35,4 +35,4 @@ Then open the local Nuxt dev server URL printed in the terminal. `/` is the game
 
 ## Status
 
-🚧 Personal/experimental project — the story data lives in checked-in JSON files (including stray copies like `nodes_1 copy.json`), suggesting the editor and content are still being iterated on rather than finalized.
+✅ Runs cleanly — `npm install && npm run dev` verified working (HTTP 200 on localhost:3000) as of 2026-09-03. Personal/experimental project — the story data lives in checked-in JSON files (including stray copies like `nodes_1 copy.json`), suggesting the editor and content are still being iterated on rather than finalized.
